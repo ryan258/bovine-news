@@ -1,0 +1,65 @@
+location: "Bentonville, AR"
+temp: 72
+feels_like: 73
+conditions: "Partly Cloudy"
+icon: "cloud-sun"
+updated: "6:45 AM"
+humidity: "60%"
+wind: "5 mph"
+visibility: "10 mi"
+hourly:
+  - time: "9 AM"
+    temp: 68
+    icon: "cloud-sun"
+  - time: "12 PM"
+    temp: 74
+    icon: "sun"
+  - time: "3 PM"
+    temp: 77
+    icon: "sun"
+  - time: "6 PM"
+    temp: 71
+    icon: "cloud-sun"
+  - time: "9 PM"
+    temp: 64
+    icon: "moon"
+forecast:
+  - day: "Today"
+    high: 77
+    low: 58
+    icon: "cloud-sun"
+    conditions: "Partly Cloudy"
+  - day: "Fri"
+    high: 79
+    low: 60
+    icon: "sun"
+    conditions: "Sunny"
+  - day: "Sat"
+    high: 74
+    low: 59
+    icon: "cloud"
+    conditions: "Overcast"
+  - day: "Sun"
+    high: 68
+    low: 55
+    icon: "storm"
+    conditions: "Scattered Storms"
+  - day: "Mon"
+    high: 71
+    low: 56
+    icon: "cloud-sun"
+    conditions: "Partly Cloudy"
+  - day: "Tue"
+    high: 75
+    low: 58
+    icon: "sun"
+    conditions: "Sunny"
+  - day: "Wed"
+    high: 73
+    low: 57
+    icon: "cloud-sun"
+    conditions: "Partly Cloudy"
+alert:
+  active: true
+  headline: "Severe Thunderstorm Watch — Western Pasture"
+  body: "The Bovine Weather Center has issued a severe thunderstorm watch for the western pasture through 9 PM. Residents are advised to bring in loose hay."
