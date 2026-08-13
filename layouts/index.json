@@ -3,6 +3,8 @@
 {{ range $i, $p := $pages }}{{ if $i }},{{ end }}
 {{ $reporter := "" }}
 {{ with $p.Params.author }}{{ $rp := site.GetPage (printf "/team/%s" .) }}{{ with $rp }}{{ $reporter = .Params.name }}{{ end }}{{ end }}
+{{ $dateStr := "" }}
+{{ with $p.Params.published_date }}{{ $dateStr = . | time.Format "Jan 2, 2006" }}{{ end }}
 {
   "title": {{ $p.Title | jsonify }},
   "url": {{ $p.RelPermalink | jsonify }},
@@ -10,7 +12,7 @@
   "summary": {{ ($p.Params.summary | default $p.Summary) | jsonify }},
   "reporter": {{ $reporter | jsonify }},
   "tags": {{ $p.Params.tags | jsonify }},
-  "date": {{ ($p.Params.published_date | time.Format "Jan 2, 2006") | jsonify }}
+  "date": {{ $dateStr | jsonify }}
 }
 {{ end }}
 ]

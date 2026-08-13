@@ -23,7 +23,7 @@
         <p>{{ .Params.description }}</p>
         <div class="story-card__meta">
           {{ if $reporter }}<span>{{ $reporter }}</span><span class="dot" aria-hidden="true">&middot;</span>{{ end }}
-          <time datetime="{{ .Params.published_date }}">{{ .Params.published_date | time.Format "Jan 2" }}</time>
+          {{ with .Params.published_date }}<time datetime="{{ . }}">{{ . | time.Format "Jan 2" }}</time>{{ end }}
         </div>
       </div>
     </article>

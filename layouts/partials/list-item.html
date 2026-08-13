@@ -9,6 +9,8 @@
   <span class="list-item__body">
     {{ if $showCategory }}<span class="tag tag--category tag--static tag--sm">{{ $p.Params.category }}</span>{{ end }}
     <span class="list-item__title">{{ $p.Title }}</span>
-    <span class="list-item__time">{{ $p.Params.published_date | time.Format "Jan 2, 3:04 PM" }}{{ if $isVideo }} &middot; {{ $p.Params.duration }}{{ end }}</span>
+    {{ $pubDate := "" }}
+    {{ with $p.Params.published_date }}{{ $pubDate = . | time.Format "Jan 2, 3:04 PM" }}{{ end }}
+    <span class="list-item__time">{{ if $pubDate }}{{ $pubDate }}{{ end }}{{ if $isVideo }} &middot; {{ $p.Params.duration }}{{ end }}</span>
   </span>
 </a>

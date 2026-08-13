@@ -13,7 +13,9 @@
     {{ if ne $size "compact" }}<p class="story-card__summary">{{ $p.Params.summary | default $p.Summary }}</p>{{ end }}
     <div class="story-card__meta">
       {{ if $reporter }}<span>{{ $reporter }}</span><span class="dot" aria-hidden="true">&middot;</span>{{ end }}
-      <time datetime="{{ $p.Params.published_date }}">{{ $p.Params.published_date | time.Format "Jan 2, 3:04 PM" }}</time>
+      {{ $pubDate := "" }}
+      {{ with $p.Params.published_date }}{{ $pubDate = . | time.Format "Jan 2, 3:04 PM" }}{{ end }}
+      {{ if $pubDate }}<time datetime="{{ $p.Params.published_date }}">{{ $pubDate }}</time>{{ end }}
       <a class="story-card__arrow" href="{{ $p.RelPermalink }}" aria-label="Read {{ $p.Title }}">{{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
     </div>
   </div>

@@ -14,7 +14,7 @@
     </div>
     <div class="feature-video__body">
       <h3>{{ $feature.Title }}</h3>
-      <p>{{ $feature.Params.published_date | time.Format "Jan 2, 3:04 PM" }}</p>
+      {{ with $feature.Params.published_date }}<p>{{ . | time.Format "Jan 2, 3:04 PM" }}</p>{{ end }}
     </div>
   </a>
   <div class="mini-tiles">
