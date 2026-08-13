@@ -1,0 +1,108 @@
+{{ define "main" }}
+{{ $reporter := "" }}
+{{ with .Params.author }}{{ $reporter = site.GetPage (printf "/team/%s" .) }}{{ end }}
+
+<article class="article">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ "/" | relURL }}">Home</a>
+      <span aria-hidden="true">&rsaquo;</span>
+      <a href="{{ "/news/" | relURL }}">News</a>
+      <span aria-hidden="true">&rsaquo;</span>
+      <a href="{{ (printf "/categories/%s/" (.Params.category | urlize)) | relURL }}">{{ .Params.category }}</a>
+      <span aria-hidden="true">&rsaquo;</span>
+      <span aria-current="page">{{ .Title }}</span>
+    </nav>
+  </div>
+
+  <header class="article-header">
+    <div class="container article-header__inner">
+      {{ if .Params.breaking_news }}<span class="tag tag--breaking">Breaking</span>{{ end }}
+      <a class="eyebrow" href="{{ (printf "/categories/%s/" (.Params.category | urlize)) | relURL }}">{{ .Params.category }}</a>
+      <h1>{{ .Title }}</h1>
+      <p class="article-header__deck">{{ .Params.summary }}</p>
+      <div class="article-header__meta">
+        {{ with $reporter }}
+        <a class="article-header__byline" href="{{ .RelPermalink }}">
+          {{ partial "portrait.html" (dict "color" (.Params.color | default "navy") "class" "portrait--xs") }}
+          <span class="article-header__byline-text">
+            <span class="article-header__byline-name">By {{ .Params.name }}</span>
+            <span class="article-header__byline-title">{{ .Params.jobtitle }}</span>
+          </span>
+        </a>
+        {{ end }}
+        <span class="article-header__datetime">
+          <time datetime="{{ .Params.published_date }}">{{ .Params.published_date | time.Format "January 2, 2006 · 3:04 PM" }}</time>
+          <span>{{ .ReadingTime }} min read</span>
+        </span>
+        {{ with .Params.updated_date }}<span class="article-header__updated">Updated {{ . | time.Format "January 2, 3:04 PM" }}</span>{{ end }}
+      </div>
+      <div class="share-row">
+        <span>Share:</span>
+        <a href="#" aria-label="Share on X">{{ partial "icon.html" (dict "name" "x" "class" "icon--sm") }}</a>
+        <a href="#" aria-label="Share on Facebook">{{ partial "icon.html" (dict "name" "facebook" "class" "icon--sm") }}</a>
+        <a href="#" aria-label="Share via email">{{ partial "icon.html" (dict "name" "mail" "class" "icon--sm") }}</a>
+        <button type="button" class="icon-btn" data-copy-link aria-label="Copy link">{{ partial "icon.html" (dict "name" "share" "class" "icon--sm") }}</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container article-hero">
+    {{ partial "media-plate.html" (dict "color" (.Params.color | default "navy") "ratio" "16x9" "label" .Params.category) }}
+  </div>
+
+  {{ $related := where site.RegularPages "Type" "news" }}
+  {{ $related = where $related "Params.category" .Params.category }}
+  {{ $related = where $related "RelPermalink" "ne" .RelPermalink }}
+  {{ $related = ($related.ByParam "published_date").Reverse | first 4 }}
+
+  <div class="container article-layout">
+    <div class="article-body">
+      {{ .Content }}
+
+      {{ with .Params.tags }}
+      <div class="article-tags">
+        <p class="article-tags__label">Tags</p>
+        <div class="tag-row">
+          {{ range . }}<a class="tag tag--outline" href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{ with $reporter }}
+      <div class="sidebar-card author-bio">
+        <h2>About the Author</h2>
+        {{ partial "reporter-card.html" . }}
+      </div>
+      {{ end }}
+    </div>
+
+    <aside class="article-sidebar">
+      {{ if $related }}
+      <div class="sidebar-card">
+        <div class="sidebar-card__head">
+          <h2>Related Stories</h2>
+          <a class="module__link" href="{{ "/news/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+        </div>
+        <div class="related-list">
+          {{ range $related }}{{ partial "list-item.html" (dict "page" . "showCategory" true) }}{{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{ with hugo.Data.trending }}
+      <div class="sidebar-card">
+        <h2>Trending Now</h2>
+        <ol class="trending-list">
+          {{ range $i, $t := first 5 . }}
+          <li><span class="trending-list__num">{{ add $i 1 }}</span><a href="{{ (printf "/search/?q=%s" ($t | urlquery)) | relURL }}">{{ $t }}</a></li>
+          {{ end }}
+        </ol>
+      </div>
+      {{ end }}
+
+      {{ partial "right-now.html" . }}
+    </aside>
+  </div>
+</article>
+{{ end }}

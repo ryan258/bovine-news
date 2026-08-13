@@ -1,0 +1,29 @@
+{{- $w := hugo.Data.weather -}}
+<section class="module weather-module">
+  <div class="container">
+    <div class="module__head">
+      <h2>Weather</h2>
+      <a class="module__link" href="{{ "/weather/" | relURL }}">Full Forecast {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+    </div>
+    <div class="weather-card">
+      <div class="weather-card__now">
+        {{ partial "icon.html" (dict "name" $w.icon "class" "weather-card__icon") }}
+        <div>
+          <p class="weather-card__temp">{{ $w.temp }}&deg;</p>
+          <p class="weather-card__conditions">{{ $w.conditions }}</p>
+          <p class="weather-card__loc">{{ partial "icon.html" (dict "name" "marker" "class" "icon--xs") }} {{ $w.location }}</p>
+        </div>
+      </div>
+      <ul class="weather-card__days">
+        {{ range first 3 (after 1 $w.forecast) }}
+        <li>
+          <span class="weather-card__day">{{ .day }}</span>
+          {{ partial "icon.html" (dict "name" .icon "class" "icon--sm") }}
+          <span class="weather-card__hi">{{ .high }}&deg;</span>
+          <span class="weather-card__lo">{{ .low }}&deg;</span>
+        </li>
+        {{ end }}
+      </ul>
+    </div>
+  </div>
+</section>

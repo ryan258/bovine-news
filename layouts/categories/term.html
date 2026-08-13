@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <span class="eyebrow">Category</span>
+    <h1>{{ .Title }}</h1>
+  </div>
+</div>
+<div class="container">
+  {{ $pages := (.Pages.ByParam "published_date").Reverse }}
+  {{ if $pages }}
+  <div class="story-grid story-grid--list">
+    {{ range $pages }}{{ partial "story-card.html" (dict "page" .) }}{{ end }}
+  </div>
+  {{ else }}
+  <p class="empty-state">No stories in this category yet — check back soon.</p>
+  {{ end }}
+</div>
+{{ end }}

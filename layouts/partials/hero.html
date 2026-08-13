@@ -1,0 +1,28 @@
+{{- $featured := where site.RegularPages "Type" "news" -}}
+{{- $featured = where $featured "Params.featured" true -}}
+{{- $featured = ($featured.ByParam "published_date").Reverse -}}
+{{- $featured = $featured | first 5 -}}
+<div class="hero-card" data-hero aria-roledescription="carousel" aria-label="Lead stories">
+  {{ range $i, $p := $featured }}
+  <article class="hero-card__slide {{ if eq $i 0 }}is-active{{ end }}" data-hero-slide {{ if ne $i 0 }}hidden{{ end }}>
+    {{ partial "media-plate.html" (dict "color" ($p.Params.color | default "navy") "ratio" "hero") }}
+    <span class="tag tag--category">{{ $p.Params.category }}</span>
+    <div class="hero-card__scrim"></div>
+    <div class="hero-card__content">
+      <h1 class="hero-card__title"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h1>
+      <p class="hero-card__summary">{{ $p.Params.summary }}</p>
+      <div class="hero-card__cta">
+        <a class="btn btn--primary" href="{{ $p.RelPermalink }}">Read Full Story</a>
+        <a class="btn btn--ghost" href="{{ "/video/" | relURL }}">{{ partial "icon.html" (dict "name" "play" "class" "icon--sm") }} Watch Coverage</a>
+      </div>
+    </div>
+  </article>
+  {{ end }}
+  {{ if gt (len $featured) 1 }}
+  <div class="hero-card__dots" data-hero-dots>
+    {{ range $i, $p := $featured }}
+    <button type="button" class="hero-card__dot {{ if eq $i 0 }}is-active{{ end }}" data-hero-dot="{{ $i }}" aria-label="Show story {{ add $i 1 }}"></button>
+    {{ end }}
+  </div>
+  {{ end }}
+</div>

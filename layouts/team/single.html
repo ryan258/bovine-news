@@ -1,0 +1,64 @@
+{{ define "main" }}
+<div class="profile">
+  <div class="container profile__header">
+    {{ partial "portrait.html" (dict "color" (.Params.color | default "navy") "class" "profile__portrait") }}
+    <div>
+      <h1>{{ .Params.name }}</h1>
+      <p class="profile__title">{{ .Params.jobtitle }} &middot; {{ .Params.beat }}</p>
+      <p class="profile__phrase">&ldquo;{{ .Params.phrase }}&rdquo;</p>
+      <div class="social-row">
+        {{ range .Params.social_links }}<a href="{{ .url }}" aria-label="{{ $.Params.name }} on {{ .platform }}">{{ partial "icon.html" (dict "name" (lower .platform)) }}</a>{{ end }}
+      </div>
+      <a class="profile__email" href="mailto:{{ .Params.email }}">{{ partial "icon.html" (dict "name" "mail" "class" "icon--sm") }} {{ .Params.email }}</a>
+    </div>
+  </div>
+
+  <div class="container profile__layout">
+    <div class="profile__bio">
+      <h2>Biography</h2>
+      {{ .Params.bio | markdownify }}
+    </div>
+    <aside class="sidebar-card">
+      <h2>Specialties</h2>
+      <div class="tag-row">
+        {{ range .Params.specialties }}<span class="tag tag--outline">{{ . }}</span>{{ end }}
+      </div>
+    </aside>
+  </div>
+
+  {{ $stories := where site.RegularPages "Type" "news" }}
+  {{ $stories = where $stories "Params.author" .Params.slug }}
+  {{ $stories = ($stories.ByParam "published_date").Reverse | first 3 }}
+  {{ if $stories }}
+  <div class="container">
+    <h2 class="section-title">Recent Stories</h2>
+    <div class="story-grid">
+      {{ range $stories }}{{ partial "story-card.html" (dict "page" . "size" "compact") }}{{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  {{ $videos := where site.RegularPages "Section" "video" }}
+  {{ $videos = where $videos "Params.reporter" .Params.slug }}
+  {{ if $videos }}
+  <div class="container">
+    <h2 class="section-title">Video Appearances</h2>
+    <div class="video-grid">
+      {{ range $videos }}
+      <article class="video-card">
+        <div class="video-card__media">
+          {{ partial "media-plate.html" (dict "color" (.Params.color | default "navy") "ratio" "16x9") }}
+          <span class="video-card__play">{{ partial "icon.html" (dict "name" "play") }}</span>
+          <span class="video-card__duration">{{ .Params.duration }}</span>
+        </div>
+        <div class="video-card__body">
+          <h3>{{ .Title }}</h3>
+          <p>{{ .Params.description }}</p>
+        </div>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+</div>
+{{ end }}

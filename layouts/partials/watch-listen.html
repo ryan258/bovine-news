@@ -1,0 +1,32 @@
+{{- $videos := ((where site.RegularPages "Section" "video").ByParam "published_date").Reverse -}}
+{{- $feature := index $videos 0 -}}
+{{- $rest := first 3 (after 1 $videos) -}}
+<div>
+  <div class="module__head">
+    <h2>Watch &amp; Listen</h2>
+    <a class="module__link" href="{{ "/video/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+  </div>
+  <a class="feature-video" href="{{ $feature.RelPermalink }}">
+    <div class="feature-video__media">
+      {{ partial "media-plate.html" (dict "color" ($feature.Params.color | default "navy") "ratio" "16x9") }}
+      <span class="video-card__play">{{ partial "icon.html" (dict "name" "play") }}</span>
+      <span class="video-card__duration">{{ $feature.Params.duration }}</span>
+    </div>
+    <div class="feature-video__body">
+      <h3>{{ $feature.Title }}</h3>
+      <p>{{ $feature.Params.published_date | time.Format "Jan 2, 3:04 PM" }}</p>
+    </div>
+  </a>
+  <div class="mini-tiles">
+    {{ range $rest }}
+    <a class="mini-tile" href="{{ .RelPermalink }}">
+      <div class="mini-tile__media">
+        {{ partial "media-plate.html" (dict "color" (.Params.color | default "navy") "ratio" "square") }}
+        <span class="list-item__play">{{ partial "icon.html" (dict "name" "play" "class" "icon--xs") }}</span>
+      </div>
+      <p class="mini-tile__title">{{ .Title }}</p>
+      <p class="mini-tile__meta">{{ .Params.duration }}</p>
+    </a>
+    {{ end }}
+  </div>
+</div>

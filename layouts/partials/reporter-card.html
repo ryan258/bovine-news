@@ -1,0 +1,12 @@
+{{- $p := . -}}
+<article class="reporter-card">
+  <a href="{{ $p.RelPermalink }}">{{ partial "portrait.html" (dict "color" ($p.Params.color | default "navy") "class" "reporter-card__portrait") }}</a>
+  <div class="reporter-card__info">
+    <h3><a href="{{ $p.RelPermalink }}">{{ $p.Params.name | upper }}</a></h3>
+    <p class="reporter-card__title">{{ $p.Params.jobtitle | upper }}</p>
+    <p class="reporter-card__tagline">{{ $p.Params.short_bio }}</p>
+    <div class="social-row social-row--sm">
+      {{ range $p.Params.social_links }}<a href="{{ .url }}" aria-label="{{ $p.Params.name }} on {{ .platform }}">{{ partial "icon.html" (dict "name" (lower .platform) "class" "icon--sm") }}</a>{{ end }}
+    </div>
+  </div>
+</article>

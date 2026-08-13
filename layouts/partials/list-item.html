@@ -1,0 +1,14 @@
+{{- $p := .page -}}
+{{- $showCategory := .showCategory | default false -}}
+{{- $isVideo := .isVideo | default false -}}
+<a class="list-item" href="{{ $p.RelPermalink }}">
+  <span class="list-item__thumb">
+    {{ partial "media-plate.html" (dict "color" ($p.Params.color | default "navy") "ratio" "square") }}
+    {{ if $isVideo }}<span class="list-item__play">{{ partial "icon.html" (dict "name" "play" "class" "icon--xs") }}</span>{{ end }}
+  </span>
+  <span class="list-item__body">
+    {{ if $showCategory }}<span class="tag tag--category tag--static tag--sm">{{ $p.Params.category }}</span>{{ end }}
+    <span class="list-item__title">{{ $p.Title }}</span>
+    <span class="list-item__time">{{ $p.Params.published_date | time.Format "Jan 2, 3:04 PM" }}{{ if $isVideo }} &middot; {{ $p.Params.duration }}{{ end }}</span>
+  </span>
+</a>

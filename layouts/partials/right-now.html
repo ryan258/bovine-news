@@ -1,0 +1,42 @@
+{{- $w := hugo.Data.weather -}}
+{{- $live := site.GetPage "/live/" -}}
+<div class="right-now">
+  <div class="right-now__card">
+    <h2 class="right-now__title">Right Now</h2>
+    <div class="right-now__main">
+      {{ partial "icon.html" (dict "name" $w.icon "class" "right-now__icon") }}
+      <div>
+        <p class="right-now__temp">{{ $w.temp }}&deg;</p>
+        <p class="right-now__cond">{{ $w.conditions }}</p>
+        <p class="right-now__loc">{{ partial "icon.html" (dict "name" "marker" "class" "icon--xs") }} {{ $w.location }}</p>
+      </div>
+    </div>
+    <p class="right-now__feels">Feels like {{ $w.feels_like }}&deg;</p>
+    <div class="right-now__stats">
+      <div><span>Humidity</span><strong>{{ $w.humidity }}</strong></div>
+      <div><span>Wind</span><strong>{{ $w.wind }}</strong></div>
+      <div><span>Visibility</span><strong>{{ $w.visibility }}</strong></div>
+    </div>
+    <div class="right-now__days">
+      {{ range first 4 $w.forecast }}
+      <div>
+        <span class="right-now__day">{{ .day }}</span>
+        {{ partial "icon.html" (dict "name" .icon "class" "icon--sm") }}
+        <span class="right-now__hi">{{ .high }}&deg;</span>
+        <span class="right-now__lo">{{ .low }}&deg;</span>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+
+  <div class="watch-live-card">
+    <p class="watch-live-card__label">Watch Live</p>
+    <p class="watch-live-card__title">Bovine News Live Stream</p>
+    <a class="btn btn--primary btn--block" href="{{ "/live/" | relURL }}">{{ partial "icon.html" (dict "name" "play" "class" "icon--sm") }} Watch Now</a>
+    {{ if $live.Params.on_air }}
+    <p class="watch-live-card__caption">Live Now &middot; Local News &middot; Weather &middot; Events</p>
+    {{ else }}
+    <p class="watch-live-card__caption">Off Air &middot; Next: {{ $live.Params.next_program }}</p>
+    {{ end }}
+  </div>
+</div>

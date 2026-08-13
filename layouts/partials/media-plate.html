@@ -1,0 +1,7 @@
+{{- $color := .color | default "navy" -}}
+{{- $ratio := .ratio | default "16x9" -}}
+{{- $label := .label -}}
+<div class="media-plate media-plate--{{ $ratio }} media-plate--{{ $color }}">
+  <span class="media-plate__mark">{{ partial "icon.html" (dict "name" "camera" "class" "media-plate__icon") }}</span>
+  {{- with $label }}<span class="media-plate__label">{{ . }}</span>{{ end -}}
+</div>

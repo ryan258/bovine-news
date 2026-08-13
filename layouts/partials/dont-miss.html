@@ -1,0 +1,26 @@
+{{- $e := hugo.Data.events -}}
+<div>
+  <div class="module__head">
+    <h2>Don't Miss</h2>
+    <a class="module__link" href="{{ "/local/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+  </div>
+  <a class="dont-miss-feature" href="{{ $e.featured.link | relURL }}">
+    {{ partial "media-plate.html" (dict "ratio" "16x9") }}
+    <div class="dont-miss-feature__body">
+      <p class="dont-miss-feature__title">{{ $e.featured.title }}</p>
+      <p class="dont-miss-feature__dates">{{ $e.featured.dates }}</p>
+    </div>
+  </a>
+  <ul class="dont-miss-list">
+    {{ range $e.list }}
+    <li>
+      <a href="{{ .link | relURL }}">
+        {{ partial "icon.html" (dict "name" .icon "class" "icon--sm") }}
+        <span class="dont-miss-list__name">{{ .name }}</span>
+        <span class="dont-miss-list__date">{{ .date }}</span>
+        <span class="dont-miss-list__more">Learn More {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--xs") }}</span>
+      </a>
+    </li>
+    {{ end }}
+  </ul>
+</div>

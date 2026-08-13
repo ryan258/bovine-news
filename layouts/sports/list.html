@@ -1,0 +1,63 @@
+{{ define "main" }}
+{{ $s := hugo.Data.sports }}
+<div class="page-header page-header--sports">
+  <div class="container">
+    <span class="eyebrow eyebrow--light">Sports</span>
+    <h1>Bovine News Sports</h1>
+  </div>
+</div>
+
+<div class="container">
+  {{ $lead := where site.RegularPages "Type" "news" }}
+  {{ $lead = where $lead "Params.category" "Sports" }}
+  {{ with index ($lead.ByParam "published_date").Reverse 0 }}
+  <div class="lead-story">{{ partial "story-card.html" (dict "page" . "size" "lead") }}</div>
+  {{ end }}
+
+  <h2 class="section-title">Scores</h2>
+  <ul class="score-list">
+    {{ range $s.scores }}
+    <li>
+      <span class="score-list__team">{{ .home }}</span><span class="score-list__num">{{ .homeScore }}</span>
+      <span class="score-list__team">{{ .away }}</span><span class="score-list__num">{{ .awayScore }}</span>
+      <span class="score-list__status">{{ .status }}</span>
+    </li>
+    {{ end }}
+  </ul>
+
+  <div class="sports-columns">
+    <div>
+      <h2 class="section-title">Standings</h2>
+      <table class="standings-table">
+        <thead><tr><th>Team</th><th>W</th><th>L</th><th>T</th></tr></thead>
+        <tbody>
+          {{ range $s.standings }}
+          <tr><td>{{ .team }}</td><td>{{ .wins }}</td><td>{{ .losses }}</td><td>{{ .ties }}</td></tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h2 class="section-title">Upcoming Games</h2>
+      <ul class="upcoming-list">
+        {{ range $s.upcoming }}
+        <li><span>{{ .matchup }}</span><time>{{ .date }}</time></li>
+        {{ end }}
+      </ul>
+    </div>
+  </div>
+
+  {{ $sportsAnchor := site.GetPage "/team/tex-longhorn" }}
+  {{ with $sportsAnchor }}
+  <h2 class="section-title">Sports Desk</h2>
+  <div class="sidebar-card sidebar-card--wide">{{ partial "reporter-card.html" . }}</div>
+  {{ end }}
+
+  <h2 class="section-title">More Sports Coverage</h2>
+  <div class="story-grid story-grid--list">
+    {{ $more := where site.RegularPages "Type" "news" }}
+    {{ $more = where $more "Params.category" "Sports" }}
+    {{ range (($more.ByParam "published_date").Reverse | first 3) }}{{ partial "story-card.html" (dict "page" .) }}{{ end }}
+  </div>
+</div>
+{{ end }}

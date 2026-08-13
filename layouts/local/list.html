@@ -1,0 +1,28 @@
+{{ define "main" }}
+<div class="page-header page-header--local">
+  <div class="container">
+    <span class="eyebrow eyebrow--light">Local</span>
+    <h1>Local News</h1>
+    <div class="page-header__intro">{{ .Content }}</div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="topic-chips">
+    {{ range slice "City Government" "Construction" "Events" "Local Business" "School News" "Cow Sightings" }}
+    <span class="chip">{{ . }}</span>
+    {{ end }}
+  </div>
+
+  {{ $pages := where site.RegularPages "Type" "news" }}
+  {{ $pages = where $pages "Params.category" "Local" }}
+  {{ $pages = ($pages.ByParam "published_date").Reverse }}
+  {{ if $pages }}
+  <div class="story-grid story-grid--list">
+    {{ range $pages }}{{ partial "story-card.html" (dict "page" .) }}{{ end }}
+  </div>
+  {{ else }}
+  <p class="empty-state">No local stories yet — check back soon.</p>
+  {{ end }}
+</div>
+{{ end }}

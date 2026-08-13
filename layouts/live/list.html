@@ -1,0 +1,34 @@
+{{ define "main" }}
+<div class="page-header page-header--live">
+  <div class="container">
+    <span class="eyebrow eyebrow--light">Watch Live</span>
+    <h1>Bovine News Live</h1>
+  </div>
+</div>
+
+<div class="container live-layout">
+  <div>
+    <div class="live-player">
+      {{ partial "media-plate.html" (dict "color" "navy" "ratio" "16x9") }}
+      {{ if .Params.on_air }}
+      <span class="live-player__badge live-player__badge--on"><span class="live-dot"></span> On Air</span>
+      {{ else }}
+      <div class="live-player__off">
+        <p>The herd is currently off air.</p>
+        <p class="live-player__next">Next program: {{ .Params.next_program }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+
+  <aside class="live-sidebar">
+    <h2>Latest Headlines</h2>
+    <ul class="headline-list">
+      {{ $latest := where site.RegularPages "Type" "news" }}
+      {{ range (($latest.ByParam "published_date").Reverse | first 6) }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  </aside>
+</div>
+{{ end }}

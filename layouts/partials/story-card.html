@@ -1,0 +1,20 @@
+{{- $p := .page -}}
+{{- $size := .size | default "regular" -}}
+{{- $reporter := "" -}}
+{{- with $p.Params.author }}{{ $rp := site.GetPage (printf "/team/%s" .) }}{{ with $rp }}{{ $reporter = .Title }}{{ end }}{{ end -}}
+<article class="story-card story-card--{{ $size }}">
+  <div class="story-card__media">
+    <a href="{{ $p.RelPermalink }}" tabindex="-1" aria-hidden="true">{{ partial "media-plate.html" (dict "color" ($p.Params.color | default "navy") "ratio" "16x9") }}</a>
+    {{ if $p.Params.breaking_news }}<span class="tag tag--breaking">Breaking</span>{{ end }}
+    <a class="tag tag--category" href="{{ (printf "/categories/%s/" ($p.Params.category | urlize)) | relURL }}">{{ $p.Params.category }}</a>
+  </div>
+  <div class="story-card__body">
+    <h3 class="story-card__title"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+    {{ if ne $size "compact" }}<p class="story-card__summary">{{ $p.Params.summary | default $p.Summary }}</p>{{ end }}
+    <div class="story-card__meta">
+      {{ if $reporter }}<span>{{ $reporter }}</span><span class="dot" aria-hidden="true">&middot;</span>{{ end }}
+      <time datetime="{{ $p.Params.published_date }}">{{ $p.Params.published_date | time.Format "Jan 2, 3:04 PM" }}</time>
+      <a class="story-card__arrow" href="{{ $p.RelPermalink }}" aria-label="Read {{ $p.Title }}">{{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+    </div>
+  </div>
+</article>

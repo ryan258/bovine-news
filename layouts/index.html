@@ -1,0 +1,69 @@
+{{ define "main" }}
+{{ $hero := where site.RegularPages "Type" "news" }}
+{{ $hero = where $hero "Params.featured" true }}
+{{ $hero = ($hero.ByParam "published_date").Reverse | first 5 }}
+{{ $heroKeys := slice }}
+{{ range $hero }}{{ $heroKeys = $heroKeys | append .RelPermalink }}{{ end }}
+
+{{ $all := (where site.RegularPages "Type" "news").ByParam "published_date" }}
+{{ $all = $all.Reverse }}
+{{ $topStories := slice }}
+{{ range $all }}
+  {{ if and (not (in $heroKeys .RelPermalink)) (lt (len $topStories) 4) }}{{ $topStories = $topStories | append . }}{{ end }}
+{{ end }}
+
+<div class="container">
+  <div class="masthead">
+    {{ partial "hero.html" . }}
+    <div class="masthead__top-stories">
+      <div class="module__head">
+        <h2>Top Stories</h2>
+        <a class="module__link" href="{{ "/news/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+      </div>
+      {{ range $topStories }}{{ partial "list-item.html" (dict "page" . "showCategory" true) }}{{ end }}
+    </div>
+    <div class="masthead__aside">
+      {{ partial "right-now.html" . }}
+    </div>
+  </div>
+</div>
+
+{{ partial "breaking-ticker.html" . }}
+{{ partial "trending-bar.html" . }}
+
+<div class="container newsroom-row">
+  <div>
+    <div class="module__head">
+      <h2>Latest News</h2>
+      <a class="module__link" href="{{ "/news/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+    </div>
+    <div class="story-grid">
+      {{ range first 6 $all }}{{ partial "story-card.html" (dict "page" . "size" "compact") }}{{ end }}
+    </div>
+  </div>
+  <div>
+    <div class="module__head">
+      <h2>Local News</h2>
+      <a class="module__link" href="{{ "/local/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+    </div>
+    {{ $local := where site.RegularPages "Params.category" "Local" }}
+    {{ range first 5 (($local.ByParam "published_date").Reverse) }}{{ partial "list-item.html" (dict "page" .) }}{{ end }}
+  </div>
+  <div>
+    <div class="module__head">
+      <h2>Latest Videos</h2>
+      <a class="module__link" href="{{ "/video/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+    </div>
+    {{ $videos := where site.RegularPages "Section" "video" }}
+    {{ range first 3 (($videos.ByParam "published_date").Reverse) }}{{ partial "list-item.html" (dict "page" . "isVideo" true) }}{{ end }}
+  </div>
+</div>
+
+<div class="container feature-row">
+  {{ partial "watch-listen.html" . }}
+  {{ partial "opinion.html" . }}
+  {{ partial "dont-miss.html" . }}
+</div>
+
+{{ partial "newsletter.html" . }}
+{{ end }}

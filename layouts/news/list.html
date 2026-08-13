@@ -1,0 +1,46 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <h1>News</h1>
+    <div class="page-header__intro">{{ .Content }}</div>
+  </div>
+</div>
+
+<div class="container">
+  <nav class="filter-pills" aria-label="Filter by category">
+    <a href="{{ "/news/" | relURL }}" class="filter-pill is-active">Latest</a>
+    <a href="{{ "/local/" | relURL }}" class="filter-pill">Local</a>
+    {{ range slice "Community" "Investigations" "Politics" "Agriculture" "Entertainment" }}
+    <a href="{{ (printf "/categories/%s/" (. | urlize)) | relURL }}" class="filter-pill">{{ . }}</a>
+    {{ end }}
+  </nav>
+</div>
+
+{{ $breaking := where site.RegularPages "Type" "news" }}
+{{ $breaking = where $breaking "Params.breaking_news" true }}
+{{ with index ($breaking.ByParam "published_date").Reverse 0 }}
+<div class="container">
+  <div class="lead-story">
+    {{ partial "story-card.html" (dict "page" . "size" "lead") }}
+  </div>
+</div>
+{{ end }}
+
+{{ $pages := (where site.RegularPages "Type" "news").ByParam "published_date" }}
+{{ $pages = $pages.Reverse }}
+{{ $paginator := .Paginate $pages 8 }}
+
+<div class="container">
+  <div class="story-grid story-grid--list">
+    {{ range $paginator.Pages }}{{ partial "story-card.html" (dict "page" .) }}{{ end }}
+  </div>
+
+  {{ if gt $paginator.TotalPages 1 }}
+  <nav class="pagination" aria-label="Pagination">
+    {{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}">{{ partial "icon.html" (dict "name" "chevron-left") }} Newer</a>{{ end }}
+    <span>Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
+    {{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}">Older {{ partial "icon.html" (dict "name" "chevron-right") }}</a>{{ end }}
+  </nav>
+  {{ end }}
+</div>
+{{ end }}

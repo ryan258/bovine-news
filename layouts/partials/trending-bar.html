@@ -1,0 +1,10 @@
+<section class="trending-bar">
+  <div class="container trending-bar__inner">
+    <span class="trending-bar__label">{{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }} Trending Now</span>
+    <ul class="trending-bar__list">
+      {{ range hugo.Data.trending }}
+      <li><a href="{{ (printf "/search/?q=%s" (. | urlquery)) | relURL }}">{{ . }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <h1>Contact the Newsroom</h1>
+    <p>Have a tip, a question, or suspicious grazing activity to report? Let us know.</p>
+  </div>
+</div>
+
+<div class="container contact-layout">
+  <form class="contact-form" data-contact-form novalidate>
+    <div class="field">
+      <label for="contact-category">Category</label>
+      <select id="contact-category" name="category" required>
+        {{ range .Params.categories }}<option>{{ . }}</option>{{ end }}
+      </select>
+    </div>
+    <div class="field">
+      <label for="contact-name">Name</label>
+      <input id="contact-name" name="name" type="text" required autocomplete="name">
+    </div>
+    <div class="field">
+      <label for="contact-email">Email</label>
+      <input id="contact-email" name="email" type="email" required autocomplete="email">
+    </div>
+    <div class="field">
+      <label for="contact-message">Message</label>
+      <textarea id="contact-message" name="message" rows="6" required></textarea>
+    </div>
+    <button type="submit" class="btn btn--primary">Send Message</button>
+    <p class="form-success" data-contact-success hidden role="status">Thanks — your message has reached the newsroom. We'll be in touch.</p>
+  </form>
+
+  <aside class="sidebar-card">
+    <h2>Other Ways to Reach Us</h2>
+    <p>{{ partial "icon.html" (dict "name" "mail" "class" "icon--sm") }} tips@bovinenews.tv</p>
+    <p>{{ partial "icon.html" (dict "name" "marker" "class" "icon--sm") }} {{ site.Params.city }}</p>
+    <div class="social-row">
+      <a href="#" aria-label="X">{{ partial "icon.html" (dict "name" "x") }}</a>
+      <a href="#" aria-label="Facebook">{{ partial "icon.html" (dict "name" "facebook") }}</a>
+      <a href="#" aria-label="Instagram">{{ partial "icon.html" (dict "name" "instagram") }}</a>
+    </div>
+  </aside>
+</div>
+{{ end }}

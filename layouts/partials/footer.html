@@ -1,0 +1,60 @@
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <span class="brand brand--footer">
+        {{ partial "icon.html" (dict "name" "globe" "class" "brand__mark") }}
+        <span class="brand__name">Bovine<span>News</span></span>
+      </span>
+      <p>Bovine News Network — {{ site.Params.brandLine }}</p>
+      <div class="social-row">
+        <a href="#" aria-label="X">{{ partial "icon.html" (dict "name" "x") }}</a>
+        <a href="#" aria-label="Facebook">{{ partial "icon.html" (dict "name" "facebook") }}</a>
+        <a href="#" aria-label="Instagram">{{ partial "icon.html" (dict "name" "instagram") }}</a>
+        <a href="#" aria-label="YouTube">{{ partial "icon.html" (dict "name" "youtube") }}</a>
+        <a href="#" aria-label="TikTok">{{ partial "icon.html" (dict "name" "tiktok") }}</a>
+      </div>
+    </div>
+
+    <nav aria-label="Footer navigation">
+      <h2>Navigate</h2>
+      <ul>
+        <li><a href="{{ "/" | relURL }}">Home</a></li>
+        <li><a href="{{ "/news/" | relURL }}">News</a></li>
+        <li><a href="{{ "/weather/" | relURL }}">Weather</a></li>
+        <li><a href="{{ "/sports/" | relURL }}">Sports</a></li>
+        <li><a href="{{ "/video/" | relURL }}">Video</a></li>
+        <li><a href="{{ "/team/" | relURL }}">Team</a></li>
+        <li><a href="{{ "/about/" | relURL }}">About</a></li>
+        <li><a href="{{ "/contact/" | relURL }}">Contact</a></li>
+      </ul>
+    </nav>
+
+    <nav aria-label="Policies">
+      <h2>Policies</h2>
+      <ul>
+        <li><a href="{{ "/privacy/" | relURL }}">Privacy</a></li>
+        <li><a href="{{ "/terms/" | relURL }}">Terms</a></li>
+        <li><a href="{{ "/accessibility/" | relURL }}">Accessibility</a></li>
+        <li><a href="{{ "/satire-disclaimer/" | relURL }}">Satire Disclaimer</a></li>
+      </ul>
+    </nav>
+
+    <div class="site-footer__apps">
+      <h2>Download Our App</h2>
+      <div class="app-badges">
+        <a class="app-badge" href="#">
+          {{ partial "icon.html" (dict "name" "play" "class" "icon--sm") }}
+          <span><small>Download on the</small>App Store</span>
+        </a>
+        <a class="app-badge" href="#">
+          {{ partial "icon.html" (dict "name" "play" "class" "icon--sm") }}
+          <span><small>Get it on</small>Google Play</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container site-footer__bottom">
+    <p>&copy; {{ now.Format "2006" }} Bovine News Network. All rights reserved. A work of satire — see our <a href="{{ "/satire-disclaimer/" | relURL }}">disclaimer</a>.</p>
+  </div>
+</footer>

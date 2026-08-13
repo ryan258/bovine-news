@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{ partial "head.html" . }}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  {{ partial "header.html" . }}
+  <main id="main">
+    <div class="page-header">
+      <div class="container not-found">
+        {{ partial "portrait.html" (dict "color" "navy" "class" "not-found__portrait") }}
+        <h1>404: Story Not Found</h1>
+        <p>This page has wandered off, much like the herd near Main Street last Tuesday.</p>
+        <a class="btn btn--primary" href="{{ "/" | relURL }}">Back to the Newsroom</a>
+      </div>
+    </div>
+  </main>
+  {{ partial "footer.html" . }}
+  {{ $js := resources.Get "js/main.js" }}
+  <script src="{{ $js.RelPermalink }}" defer></script>
+</body>
+</html>

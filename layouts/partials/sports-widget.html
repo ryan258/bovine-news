@@ -1,0 +1,19 @@
+{{- $s := hugo.Data.sports -}}
+<section class="module sports-module">
+  <div class="container">
+    <div class="module__head">
+      <h2>Sports</h2>
+      <a class="module__link" href="{{ "/sports/" | relURL }}">View Sports {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+    </div>
+    <a class="sports-card" href="{{ "/sports/" | relURL }}">
+      <div class="sports-card__media">
+        {{ partial "media-plate.html" (dict "color" "navy" "ratio" "16x9") }}
+        <span class="tag tag--category">Game Day</span>
+      </div>
+      <div class="sports-card__body">
+        <p class="sports-card__headline">{{ $s.headline }}</p>
+        <p class="sports-card__sub">Friday night lights and big plays ahead.</p>
+      </div>
+    </a>
+  </div>
+</section>

@@ -1,0 +1,13 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <h1>{{ .Title }}</h1>
+    <div class="page-header__intro">{{ .Content }}</div>
+  </div>
+</div>
+<div class="container">
+  <div class="reporter-grid">
+    {{ range .Pages.ByParam "weight" }}{{ partial "reporter-card.html" . }}{{ end }}
+  </div>
+</div>
+{{ end }}

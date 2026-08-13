@@ -1,0 +1,30 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ site.Title }} — {{ site.Params.brandLine }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+<meta name="description" content="{{ .Params.seo_description | default .Summary | default site.Params.brandLine }}">
+<link rel="canonical" href="{{ .Permalink }}">
+<meta property="og:type" content="{{ if eq .Type "news" }}article{{ else }}website{{ end }}">
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ .Params.seo_description | default .Summary | default site.Params.brandLine }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%2308243d%22/><text x=%2250%22 y=%2268%22 font-size=%2260%22 text-anchor=%22middle%22 fill=%22%23e31f2b%22 font-family=%22sans-serif%22>B</text></svg>">
+{{ $css := resources.Get "css/main.css" }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ "index.xml" | relURL }}">
+{{ if eq .Type "news" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": {{ .Title | jsonify }},
+  "datePublished": {{ .Params.published_date | jsonify }},
+  "dateModified": {{ (.Params.updated_date | default .Params.published_date) | jsonify }},
+  "author": { "@type": "Person", "name": {{ (.Params.author | default "Bovine News Staff") | jsonify }} },
+  "publisher": { "@type": "Organization", "name": "Bovine News Network" }
+}
+</script>
+{{ end }}

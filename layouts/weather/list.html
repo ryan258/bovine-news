@@ -1,0 +1,65 @@
+{{ define "main" }}
+{{ $w := hugo.Data.weather }}
+<div class="page-header page-header--weather">
+  <div class="container">
+    <span class="eyebrow eyebrow--light">Weather</span>
+    <h1>{{ $w.location }}</h1>
+    <p>Last updated {{ $w.updated }}</p>
+  </div>
+</div>
+
+<div class="container">
+  {{ if $w.alert.active }}
+  <div class="alert-banner">
+    {{ partial "icon.html" (dict "name" "storm" "class" "alert-banner__icon") }}
+    <div>
+      <p class="alert-banner__title">{{ $w.alert.headline }}</p>
+      <p>{{ $w.alert.body }}</p>
+    </div>
+  </div>
+  {{ end }}
+
+  <div class="weather-hero">
+    {{ partial "icon.html" (dict "name" $w.icon "class" "weather-hero__icon") }}
+    <div>
+      <p class="weather-hero__temp">{{ $w.temp }}&deg;</p>
+      <p class="weather-hero__conditions">{{ $w.conditions }}</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">Hourly Forecast</h2>
+  <ul class="hourly-row">
+    {{ range $w.hourly }}
+    <li>
+      <span>{{ .time }}</span>
+      {{ partial "icon.html" (dict "name" .icon "class" "icon--sm") }}
+      <span class="hourly-row__temp">{{ .temp }}&deg;</span>
+    </li>
+    {{ end }}
+  </ul>
+
+  <h2 class="section-title">7-Day Forecast</h2>
+  <ul class="forecast-list">
+    {{ range $w.forecast }}
+    <li>
+      <span class="forecast-list__day">{{ .day }}</span>
+      {{ partial "icon.html" (dict "name" .icon "class" "icon--sm") }}
+      <span class="forecast-list__cond">{{ .conditions }}</span>
+      <span class="forecast-list__hi">{{ .high }}&deg;</span>
+      <span class="forecast-list__lo">{{ .low }}&deg;</span>
+    </li>
+    {{ end }}
+  </ul>
+
+  <h2 class="section-title">Radar</h2>
+  {{ partial "media-plate.html" (dict "color" "blue" "ratio" "16x9" "label" "Radar Coming Soon") }}
+
+  {{ $met := site.GetPage "/team/mooira-nav" }}
+  {{ with $met }}
+  <h2 class="section-title">Your Meteorologist</h2>
+  <div class="sidebar-card sidebar-card--wide">
+    {{ partial "reporter-card.html" . }}
+  </div>
+  {{ end }}
+</div>
+{{ end }}
