@@ -1,4 +1,4 @@
-{{ $weather := hugo.Data.weather }}
+{{ $weather := site.Data.weather }}
 {{ $sec := .Section }}
 {{ $onAir := (site.GetPage "/live/").Params.on_air }}
 <div class="utility-bar">

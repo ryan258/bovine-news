@@ -4,7 +4,7 @@
     <a class="module__link" href="{{ "/team/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
   </div>
   <div class="opinion-list">
-    {{ range hugo.Data.opinion }}
+    {{ range site.Data.opinion }}
     {{ $item := . }}
     {{ $rp := site.GetPage (printf "/team/%s" $item.reporter) }}
     {{ with $rp }}
