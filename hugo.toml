@@ -1,0 +1,28 @@
+baseURL = "https://bovine.news/"
+locale = "en-us"
+title = "Bovine News Network"
+
+enableRobotsTXT = true
+summarylength = 40
+
+[params]
+  brandLine = "No Bull. Just Moo-Point."
+  city = "Bentonville, AR"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
+
+[permalinks]
+  news = "/news/:slug/"
+  video = "/video/:slug/"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[services.rss]
+  limit = 20
