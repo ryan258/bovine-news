@@ -12,14 +12,14 @@
     {{ $reporter := "" }}
     {{ with .Params.reporter }}{{ $rp := site.GetPage (printf "/team/%s" .) }}{{ with $rp }}{{ $reporter = .Params.name }}{{ end }}{{ end }}
     <article class="video-card">
-      <div class="video-card__media">
+      <a class="video-card__media" href="{{ .RelPermalink }}">
         {{ partial "media-plate.html" (dict "color" (.Params.color | default "navy") "ratio" "16x9") }}
         <span class="video-card__play">{{ partial "icon.html" (dict "name" "play") }}</span>
         <span class="video-card__duration">{{ .Params.duration }}</span>
-      </div>
+      </a>
       <div class="video-card__body">
         <span class="eyebrow">{{ .Params.category }}</span>
-        <h3>{{ .Title }}</h3>
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
         <p>{{ .Params.description }}</p>
         <div class="story-card__meta">
           {{ if $reporter }}<span>{{ $reporter }}</span><span class="dot" aria-hidden="true">&middot;</span>{{ end }}

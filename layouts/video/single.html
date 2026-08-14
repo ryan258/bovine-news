@@ -1,0 +1,58 @@
+{{ define "main" }}
+{{ $reporter := "" }}
+{{ with .Params.reporter }}{{ $reporter = site.GetPage (printf "/team/%s" .) }}{{ end }}
+
+<article class="article">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ "" | relURL }}">Home</a>
+      <span aria-hidden="true">&rsaquo;</span>
+      <a href="{{ "video/" | relURL }}">Video</a>
+      <span aria-hidden="true">&rsaquo;</span>
+      <span aria-current="page">{{ .Title }}</span>
+    </nav>
+  </div>
+
+  <header class="article-header">
+    <div class="container article-header__inner">
+      <span class="eyebrow">{{ .Params.category }}</span>
+      <h1>{{ .Title }}</h1>
+      <p class="article-header__deck">{{ .Params.description }}</p>
+      <div class="article-header__meta">
+        {{ with $reporter }}
+        <a class="article-header__byline" href="{{ .RelPermalink }}">
+          {{ partial "portrait.html" (dict "color" (.Params.color | default "navy") "class" "portrait--xs") }}
+          <span class="article-header__byline-text">
+            <span class="article-header__byline-name">By {{ .Params.name }}</span>
+            <span class="article-header__byline-title">{{ .Params.jobtitle }}</span>
+          </span>
+        </a>
+        {{ end }}
+        <span class="article-header__datetime">
+          {{ with .Params.published_date }}<time datetime="{{ . }}">{{ . | time.Format "January 2, 2006 · 3:04 PM" }}</time>{{ end }}
+          {{ with .Params.duration }}<span>{{ . }}</span>{{ end }}
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container article-hero">
+    {{ partial "media-plate.html" (dict "color" (.Params.color | default "navy") "ratio" "16x9" "label" "Concept clip — no video file yet") }}
+  </div>
+
+  <div class="container article-layout">
+    <div class="article-body">
+      {{ .Content }}
+      {{ with $reporter }}
+      <div class="sidebar-card author-bio">
+        <h2>About the Reporter</h2>
+        {{ partial "reporter-card.html" . }}
+      </div>
+      {{ end }}
+    </div>
+    <aside class="article-sidebar">
+      {{ partial "right-now.html" . }}
+    </aside>
+  </div>
+</article>
+{{ end }}
