@@ -7,11 +7,12 @@
         <p>Top stories, weather, and sports — delivered to your inbox every weekday morning.</p>
       </div>
     </div>
-    <form class="newsletter__form" novalidate>
+    <form class="newsletter__form" data-newsletter-form>
       <label for="newsletter-email" class="sr-only">Email address</label>
       <input id="newsletter-email" name="email" type="email" placeholder="Enter your email" required autocomplete="email">
       <button type="submit" class="btn btn--primary">Subscribe</button>
     </form>
+    <p class="form-success" data-newsletter-success hidden role="status">This is a demo — subscriptions aren't actually processed yet.</p>
   </div>
-  <p class="container newsletter__consent">By subscribing you agree to receive email updates from Bovine News Network. You can unsubscribe at any time. See our <a href="{{ "/privacy/" | relURL }}">Privacy Policy</a>.</p>
+  <p class="container newsletter__consent">By subscribing you agree to receive email updates from Bovine News Network. You can unsubscribe at any time. See our <a href="{{ "privacy/" | relURL }}">Privacy Policy</a>.</p>
 </section>

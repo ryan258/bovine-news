@@ -3,7 +3,7 @@
     <span class="trending-bar__label">{{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }} Trending Now</span>
     <ul class="trending-bar__list">
       {{ range site.Data.trending }}
-      <li><a href="{{ (printf "/search/?q=%s" (. | urlquery)) | relURL }}">{{ . }}</a></li>
+      <li><a href="{{ (printf "search/?q=%s" (. | urlquery)) | relURL }}">{{ . }}</a></li>
       {{ end }}
     </ul>
   </div>

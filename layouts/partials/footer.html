@@ -18,24 +18,24 @@
     <nav aria-label="Footer navigation">
       <h2>Navigate</h2>
       <ul>
-        <li><a href="{{ "/" | relURL }}">Home</a></li>
-        <li><a href="{{ "/news/" | relURL }}">News</a></li>
-        <li><a href="{{ "/weather/" | relURL }}">Weather</a></li>
-        <li><a href="{{ "/sports/" | relURL }}">Sports</a></li>
-        <li><a href="{{ "/video/" | relURL }}">Video</a></li>
-        <li><a href="{{ "/team/" | relURL }}">Team</a></li>
-        <li><a href="{{ "/about/" | relURL }}">About</a></li>
-        <li><a href="{{ "/contact/" | relURL }}">Contact</a></li>
+        <li><a href="{{ "" | relURL }}">Home</a></li>
+        <li><a href="{{ "news/" | relURL }}">News</a></li>
+        <li><a href="{{ "weather/" | relURL }}">Weather</a></li>
+        <li><a href="{{ "sports/" | relURL }}">Sports</a></li>
+        <li><a href="{{ "video/" | relURL }}">Video</a></li>
+        <li><a href="{{ "team/" | relURL }}">Team</a></li>
+        <li><a href="{{ "about/" | relURL }}">About</a></li>
+        <li><a href="{{ "contact/" | relURL }}">Contact</a></li>
       </ul>
     </nav>
 
     <nav aria-label="Policies">
       <h2>Policies</h2>
       <ul>
-        <li><a href="{{ "/privacy/" | relURL }}">Privacy</a></li>
-        <li><a href="{{ "/terms/" | relURL }}">Terms</a></li>
-        <li><a href="{{ "/accessibility/" | relURL }}">Accessibility</a></li>
-        <li><a href="{{ "/satire-disclaimer/" | relURL }}">Satire Disclaimer</a></li>
+        <li><a href="{{ "privacy/" | relURL }}">Privacy</a></li>
+        <li><a href="{{ "terms/" | relURL }}">Terms</a></li>
+        <li><a href="{{ "accessibility/" | relURL }}">Accessibility</a></li>
+        <li><a href="{{ "satire-disclaimer/" | relURL }}">Satire Disclaimer</a></li>
       </ul>
     </nav>
 
@@ -55,6 +55,6 @@
   </div>
 
   <div class="container site-footer__bottom">
-    <p>&copy; {{ now.Format "2006" }} Bovine News Network. All rights reserved. A work of satire — see our <a href="{{ "/satire-disclaimer/" | relURL }}">disclaimer</a>.</p>
+    <p>&copy; {{ now.Format "2006" }} Bovine News Network. All rights reserved. A work of satire — see our <a href="{{ "satire-disclaimer/" | relURL }}">disclaimer</a>.</p>
   </div>
 </footer>

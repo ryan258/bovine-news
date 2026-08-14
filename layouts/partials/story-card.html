@@ -6,7 +6,7 @@
   <div class="story-card__media">
     <a href="{{ $p.RelPermalink }}" tabindex="-1" aria-hidden="true">{{ partial "media-plate.html" (dict "color" ($p.Params.color | default "navy") "ratio" "16x9") }}</a>
     {{ if $p.Params.breaking_news }}<span class="tag tag--breaking">Breaking</span>{{ end }}
-    <a class="tag tag--category" href="{{ (printf "/categories/%s/" ($p.Params.category | urlize)) | relURL }}">{{ $p.Params.category }}</a>
+    <a class="tag tag--category" href="{{ (printf "categories/%s/" ($p.Params.category | urlize)) | relURL }}">{{ $p.Params.category }}</a>
   </div>
   <div class="story-card__body">
     <h3 class="story-card__title"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>

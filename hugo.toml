@@ -24,5 +24,9 @@ summarylength = 40
 [markup.goldmark.renderer]
   unsafe = true
 
+[frontmatter]
+  date = ["published_date", "date", ":default"]
+  lastmod = ["updated_date", "lastmod", ":default"]
+
 [services.rss]
   limit = 20

@@ -18,7 +18,7 @@
     <div class="masthead__top-stories">
       <div class="module__head">
         <h2>Top Stories</h2>
-        <a class="module__link" href="{{ "/news/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+        <a class="module__link" href="{{ "news/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
       </div>
       {{ range $topStories }}{{ partial "list-item.html" (dict "page" . "showCategory" true) }}{{ end }}
     </div>
@@ -35,7 +35,7 @@
   <div>
     <div class="module__head">
       <h2>Latest News</h2>
-      <a class="module__link" href="{{ "/news/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+      <a class="module__link" href="{{ "news/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
     </div>
     <div class="story-grid">
       {{ range first 6 $all }}{{ partial "story-card.html" (dict "page" . "size" "compact") }}{{ end }}
@@ -44,7 +44,7 @@
   <div>
     <div class="module__head">
       <h2>Local News</h2>
-      <a class="module__link" href="{{ "/local/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+      <a class="module__link" href="{{ "local/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
     </div>
     {{ $local := where site.RegularPages "Params.category" "Local" }}
     {{ range first 5 (($local.ByParam "published_date").Reverse) }}{{ partial "list-item.html" (dict "page" .) }}{{ end }}
@@ -52,7 +52,7 @@
   <div>
     <div class="module__head">
       <h2>Latest Videos</h2>
-      <a class="module__link" href="{{ "/video/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+      <a class="module__link" href="{{ "video/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
     </div>
     {{ $videos := where site.RegularPages "Section" "video" }}
     {{ range first 3 (($videos.ByParam "published_date").Reverse) }}{{ partial "list-item.html" (dict "page" . "isVideo" true) }}{{ end }}

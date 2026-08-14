@@ -8,10 +8,10 @@
 
 <div class="container">
   <nav class="filter-pills" aria-label="Filter by category">
-    <a href="{{ "/news/" | relURL }}" class="filter-pill is-active">Latest</a>
-    <a href="{{ "/local/" | relURL }}" class="filter-pill">Local</a>
+    <a href="{{ "news/" | relURL }}" class="filter-pill is-active">Latest</a>
+    <a href="{{ "local/" | relURL }}" class="filter-pill">Local</a>
     {{ range slice "Community" "Investigations" "Politics" "Agriculture" "Entertainment" }}
-    <a href="{{ (printf "/categories/%s/" (. | urlize)) | relURL }}" class="filter-pill">{{ . }}</a>
+    <a href="{{ (printf "categories/%s/" (. | urlize)) | relURL }}" class="filter-pill">{{ . }}</a>
     {{ end }}
   </nav>
 </div>

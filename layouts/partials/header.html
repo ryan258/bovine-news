@@ -16,18 +16,18 @@
       <span>{{ $weather.temp }}&deg; {{ $weather.conditions }}</span>
     </div>
     <div class="utility-bar__right">
-      <a class="btn btn--live btn--sm" href="{{ "/live/" | relURL }}">{{ partial "icon.html" (dict "name" "play" "class" "icon--xs") }} Watch Live</a>
+      <a class="btn btn--live btn--sm" href="{{ "live/" | relURL }}">{{ partial "icon.html" (dict "name" "play" "class" "icon--xs") }} Watch Live</a>
       <a href="#" aria-label="Bovine News on X">{{ partial "icon.html" (dict "name" "x" "class" "icon--sm") }}</a>
       <a href="#" aria-label="Bovine News on Facebook">{{ partial "icon.html" (dict "name" "facebook" "class" "icon--sm") }}</a>
       <a href="#" aria-label="Bovine News on Instagram">{{ partial "icon.html" (dict "name" "instagram" "class" "icon--sm") }}</a>
-      <a class="icon-btn icon-btn--sm" href="{{ "/search/" | relURL }}" aria-label="Search">{{ partial "icon.html" (dict "name" "search" "class" "icon--sm") }}</a>
+      <a class="icon-btn icon-btn--sm" href="{{ "search/" | relURL }}" aria-label="Search">{{ partial "icon.html" (dict "name" "search" "class" "icon--sm") }}</a>
     </div>
   </div>
 </div>
 
 <header class="site-header" id="site-header">
   <div class="container site-header__brand-row">
-    <a href="{{ "/" | relURL }}" class="brand">
+    <a href="{{ "" | relURL }}" class="brand">
       {{ partial "icon.html" (dict "name" "globe" "class" "brand__mark") }}
       <span class="brand__name">Bovine<span>News</span></span>
     </a>
@@ -42,14 +42,14 @@
   <div class="container site-header__nav-row">
     <nav class="primary-nav" aria-label="Primary">
       <ul>
-        <li><a href="{{ "/" | relURL }}" {{ if .IsHome }}aria-current="page"{{ end }}>Home</a></li>
-        <li><a href="{{ "/news/" | relURL }}" {{ if eq $sec "news" }}aria-current="page"{{ end }}>News</a></li>
-        <li><a href="{{ "/local/" | relURL }}" {{ if eq $sec "local" }}aria-current="page"{{ end }}>Local</a></li>
-        <li><a href="{{ "/weather/" | relURL }}" {{ if eq $sec "weather" }}aria-current="page"{{ end }}>Weather</a></li>
-        <li><a href="{{ "/sports/" | relURL }}" {{ if eq $sec "sports" }}aria-current="page"{{ end }}>Sports</a></li>
-        <li><a href="{{ "/video/" | relURL }}" {{ if eq $sec "video" }}aria-current="page"{{ end }}>Video</a></li>
-        <li><a href="{{ "/about/" | relURL }}" {{ if eq $sec "about" }}aria-current="page"{{ end }}>About</a></li>
-        <li><a href="{{ "/contact/" | relURL }}" {{ if eq $sec "contact" }}aria-current="page"{{ end }}>Contact</a></li>
+        <li><a href="{{ "" | relURL }}" {{ if .IsHome }}aria-current="page"{{ end }}>Home</a></li>
+        <li><a href="{{ "news/" | relURL }}" {{ if eq $sec "news" }}aria-current="page"{{ end }}>News</a></li>
+        <li><a href="{{ "local/" | relURL }}" {{ if eq $sec "local" }}aria-current="page"{{ end }}>Local</a></li>
+        <li><a href="{{ "weather/" | relURL }}" {{ if eq $sec "weather" }}aria-current="page"{{ end }}>Weather</a></li>
+        <li><a href="{{ "sports/" | relURL }}" {{ if eq $sec "sports" }}aria-current="page"{{ end }}>Sports</a></li>
+        <li><a href="{{ "video/" | relURL }}" {{ if eq $sec "video" }}aria-current="page"{{ end }}>Video</a></li>
+        <li><a href="{{ "about/" | relURL }}" {{ if eq $sec "about" }}aria-current="page"{{ end }}>About</a></li>
+        <li><a href="{{ "contact/" | relURL }}" {{ if eq $sec "contact" }}aria-current="page"{{ end }}>Contact</a></li>
       </ul>
     </nav>
   </div>
@@ -57,17 +57,17 @@
   <div class="mobile-nav" id="mobile-nav" data-mobile-nav hidden>
     <nav aria-label="Mobile">
       <ul>
-        <li><a href="{{ "/" | relURL }}">Home</a></li>
-        <li><a href="{{ "/news/" | relURL }}">News</a></li>
-        <li><a href="{{ "/local/" | relURL }}">Local</a></li>
-        <li><a href="{{ "/weather/" | relURL }}">Weather</a></li>
-        <li><a href="{{ "/sports/" | relURL }}">Sports</a></li>
-        <li><a href="{{ "/video/" | relURL }}">Video</a></li>
-        <li><a href="{{ "/team/" | relURL }}">Team</a></li>
-        <li><a href="{{ "/about/" | relURL }}">About</a></li>
-        <li><a href="{{ "/contact/" | relURL }}">Contact</a></li>
+        <li><a href="{{ "" | relURL }}">Home</a></li>
+        <li><a href="{{ "news/" | relURL }}">News</a></li>
+        <li><a href="{{ "local/" | relURL }}">Local</a></li>
+        <li><a href="{{ "weather/" | relURL }}">Weather</a></li>
+        <li><a href="{{ "sports/" | relURL }}">Sports</a></li>
+        <li><a href="{{ "video/" | relURL }}">Video</a></li>
+        <li><a href="{{ "team/" | relURL }}">Team</a></li>
+        <li><a href="{{ "about/" | relURL }}">About</a></li>
+        <li><a href="{{ "contact/" | relURL }}">Contact</a></li>
       </ul>
-      <a class="btn btn--live btn--block" href="{{ "/live/" | relURL }}"><span class="live-dot{{ if not $onAir }} live-dot--off{{ end }}" aria-hidden="true"></span> Watch Live</a>
+      <a class="btn btn--live btn--block" href="{{ "live/" | relURL }}"><span class="live-dot{{ if not $onAir }} live-dot--off{{ end }}" aria-hidden="true"></span> Watch Live</a>
     </nav>
   </div>
 </header>

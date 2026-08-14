@@ -1,7 +1,7 @@
 <div>
   <div class="module__head">
     <h2>Opinion</h2>
-    <a class="module__link" href="{{ "/team/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+    <a class="module__link" href="{{ "team/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
   </div>
   <div class="opinion-list">
     {{ range site.Data.opinion }}

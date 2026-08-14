@@ -32,7 +32,7 @@
   <div class="watch-live-card">
     <p class="watch-live-card__label">Watch Live</p>
     <p class="watch-live-card__title">Bovine News Live Stream</p>
-    <a class="btn btn--primary btn--block" href="{{ "/live/" | relURL }}">{{ partial "icon.html" (dict "name" "play" "class" "icon--sm") }} Watch Now</a>
+    <a class="btn btn--primary btn--block" href="{{ "live/" | relURL }}">{{ partial "icon.html" (dict "name" "play" "class" "icon--sm") }} Watch Now</a>
     {{ if $live.Params.on_air }}
     <p class="watch-live-card__caption">Live Now &middot; Local News &middot; Weather &middot; Events</p>
     {{ else }}

@@ -9,7 +9,7 @@
         {{ range $b.items }}<li aria-hidden="true"><a href="{{ .link | relURL }}" tabindex="-1">{{ .text }}</a></li>{{ end }}
       </ul>
     </div>
-    <a class="ticker__viewall" href="{{ "/news/" | relURL }}">View All {{ partial "icon.html" (dict "name" "chevron-right" "class" "icon--sm") }}</a>
+    <a class="ticker__viewall" href="{{ "news/" | relURL }}">View All {{ partial "icon.html" (dict "name" "chevron-right" "class" "icon--sm") }}</a>
   </div>
 </div>
 {{- end -}}

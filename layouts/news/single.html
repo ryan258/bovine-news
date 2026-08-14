@@ -5,11 +5,11 @@
 <article class="article">
   <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="{{ "/" | relURL }}">Home</a>
+      <a href="{{ "" | relURL }}">Home</a>
       <span aria-hidden="true">&rsaquo;</span>
-      <a href="{{ "/news/" | relURL }}">News</a>
+      <a href="{{ "news/" | relURL }}">News</a>
       <span aria-hidden="true">&rsaquo;</span>
-      <a href="{{ (printf "/categories/%s/" (.Params.category | urlize)) | relURL }}">{{ .Params.category }}</a>
+      <a href="{{ (printf "categories/%s/" (.Params.category | urlize)) | relURL }}">{{ .Params.category }}</a>
       <span aria-hidden="true">&rsaquo;</span>
       <span aria-current="page">{{ .Title }}</span>
     </nav>
@@ -18,7 +18,7 @@
   <header class="article-header">
     <div class="container article-header__inner">
       {{ if .Params.breaking_news }}<span class="tag tag--breaking">Breaking</span>{{ end }}
-      <a class="eyebrow" href="{{ (printf "/categories/%s/" (.Params.category | urlize)) | relURL }}">{{ .Params.category }}</a>
+      <a class="eyebrow" href="{{ (printf "categories/%s/" (.Params.category | urlize)) | relURL }}">{{ .Params.category }}</a>
       <h1>{{ .Title }}</h1>
       <p class="article-header__deck">{{ .Params.summary }}</p>
       <div class="article-header__meta">
@@ -64,7 +64,7 @@
       <div class="article-tags">
         <p class="article-tags__label">Tags</p>
         <div class="tag-row">
-          {{ range . }}<a class="tag tag--outline" href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}
+          {{ range . }}<a class="tag tag--outline" href="{{ (printf "tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}
         </div>
       </div>
       {{ end }}
@@ -82,7 +82,7 @@
       <div class="sidebar-card">
         <div class="sidebar-card__head">
           <h2>Related Stories</h2>
-          <a class="module__link" href="{{ "/news/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+          <a class="module__link" href="{{ "news/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
         </div>
         <div class="related-list">
           {{ range $related }}{{ partial "list-item.html" (dict "page" . "showCategory" true) }}{{ end }}
@@ -95,7 +95,7 @@
         <h2>Trending Now</h2>
         <ol class="trending-list">
           {{ range $i, $t := first 5 . }}
-          <li><span class="trending-list__num">{{ add $i 1 }}</span><a href="{{ (printf "/search/?q=%s" ($t | urlquery)) | relURL }}">{{ $t }}</a></li>
+          <li><span class="trending-list__num">{{ add $i 1 }}</span><a href="{{ (printf "search/?q=%s" ($t | urlquery)) | relURL }}">{{ $t }}</a></li>
           {{ end }}
         </ol>
       </div>
