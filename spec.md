@@ -11,6 +11,18 @@
 
 ---
 
+## Current Scope Override — Video Temporarily Disabled
+
+As of August 14, 2026, public video and livestream features are intentionally disabled. The site should retain its broadcast-news visual language, but current builds must not expose video navigation, playback cues, livestream status, video modules, video profile appearances, or `/video/` and `/live/` pages.
+
+The video content, templates, styles, permalink rules, and the requirements later in this specification remain dormant rather than deleted so the project can grow into them when sustainable production values are available.
+
+Re-enabling video is an explicit product decision: set `params.features.video` to `true` in `hugo.toml`, remove the `build` guards from `content/video/_index.md` and `content/live/_index.md`, and complete a generated-site, interaction, accessibility, caption, transcript, and media-delivery review before publication.
+
+This scope override takes precedence over all video, video-appearance, multimedia, and livestream requirements below while the feature flag is disabled.
+
+---
+
 # 1. Project Overview
 
 The Bovine News Network website is a complete fictional digital news property built around a team of plush cow journalists operating as a serious television newsroom.
@@ -639,7 +651,7 @@ Contains:
 
 ---
 
-# 23. Video Page
+# 23. Video Page — Dormant Future Capability
 
 URL:
 
@@ -659,7 +671,7 @@ Video thumbnails should use 16:9 ratios.
 
 ---
 
-# 24. Watch Live Page
+# 24. Watch Live Page — Dormant Future Capability
 
 URL:
 
