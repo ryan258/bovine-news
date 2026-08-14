@@ -1,6 +1,8 @@
 ---
 title: "Hay Prices Reach Five-Year High as Dairy Markets Hold Steady, Somehow Insulted by This"
 slug: "dairy-prices-five-year-high"
+image: "images/news/dairy-prices-five-year-high.webp"
+image_alt: "A small offended cow glares at a towering stack of hay bales in a sunlit barn."
 summary: "A dry summer has pushed hay prices to their highest point in five years, though dairy prices have so far remained stable, a fact several dairy cows say they are choosing to take personally."
 category: "Agriculture"
 categories: ["Agriculture"]

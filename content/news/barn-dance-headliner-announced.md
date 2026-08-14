@@ -1,6 +1,8 @@
 ---
 title: "Barn Dance Festival Announces Headliner for Fall Lineup: A Man Playing a Banjo, Somehow"
 slug: "barn-dance-headliner-announced"
+image: "images/news/barn-dance-headliner-announced.webp"
+image_alt: "A lone banjo player stands under a huge spotlight while a crowd of cows stares from below."
 summary: "Organizers confirmed the headlining act for this year's Barn Dance Festival, drawing early excitement across the county and one open letter questioning why a human was booked at all."
 category: "Entertainment"
 categories: ["Entertainment"]

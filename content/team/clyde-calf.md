@@ -2,6 +2,8 @@
 title: "Clyde Calf"
 name: "Clyde Calf"
 slug: "clyde-calf"
+image: "images/team/clyde-calf.webp"
+image_alt: "Clyde Calf shouts into a microphone during a windblown roadside report."
 jobtitle: "Field Reporter"
 beat: "Local & Community"
 short_bio: "You'll find him at the scene before the tape goes up. Two seasons running as the newsroom's most-dispatched reporter."

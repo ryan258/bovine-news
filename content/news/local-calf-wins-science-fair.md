@@ -1,6 +1,8 @@
 ---
 title: "Local Calf Wins Regional Science Fair With Pasture Rotation Study, Judges Now Personally Invested"
 slug: "local-calf-wins-science-fair"
+image: "images/news/local-calf-wins-science-fair.webp"
+image_alt: "A calf wearing a blue ribbon stands beside a pasture-rotation diorama as cow judges cheer."
 summary: "A ten-year-old took top honors at the regional science fair for a study on rotational grazing patterns so rigorous that two judges have reportedly redone their own pastures at home."
 category: "Community"
 categories: ["Community"]

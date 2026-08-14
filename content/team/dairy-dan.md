@@ -2,6 +2,8 @@
 title: "Dairy Dan"
 name: "Dairy Dan"
 slug: "dairy-dan"
+image: "images/team/dairy-dan.webp"
+image_alt: "Dairy Dan poses with folded arms in the Bovine News studio."
 jobtitle: "Chief Anchor"
 beat: "Evening Broadcast"
 short_bio: "Anchoring the desk since the network's founding. Steady under pressure, even during the Great Salt Lick Scandal."

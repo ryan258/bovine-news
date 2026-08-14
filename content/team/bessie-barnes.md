@@ -2,6 +2,8 @@
 title: "Bessie Barnes"
 name: "Bessie Barnes"
 slug: "bessie-barnes"
+image: "images/team/bessie-barnes.webp"
+image_alt: "Bessie Barnes leans over a newsroom desk and squints suspiciously into the camera."
 jobtitle: "Investigative Reporter"
 beat: "Investigations"
 short_bio: "Broke the Great Salt Lick Scandal. Files public-records requests the way other reporters file expense reports."

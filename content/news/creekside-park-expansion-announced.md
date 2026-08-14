@@ -1,6 +1,8 @@
 ---
 title: "Creekside Park Expansion Officially Breaks Ground This Fall, Bench Included"
 slug: "creekside-park-expansion-announced"
+image: "images/news/creekside-park-expansion-announced.webp"
+image_alt: "A cow official raises an oversized gold shovel beside a dramatically lit park bench."
 summary: "Following council approval, officials confirmed a fall groundbreaking date for the Creekside Park expansion, and, yes, the bench survived."
 category: "Local"
 categories: ["Local"]

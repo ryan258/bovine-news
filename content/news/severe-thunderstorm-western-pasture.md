@@ -1,6 +1,8 @@
 ---
 title: "Severe Thunderstorm Watch Issued for Western Pasture Through Evening; Mooira Nav Has Never Been More Alive"
 slug: "severe-thunderstorm-western-pasture"
+image: "images/news/severe-thunderstorm-western-pasture.webp"
+image_alt: "An excited cow meteorologist points at lightning beneath a dark supercell over the pasture."
 summary: "The Bovine Weather Center has issued a severe thunderstorm watch for the western pasture through 9 p.m. tonight, and chief meteorologist Mooira Nav would like everyone to know she trained for this."
 category: "Local"
 categories: ["Local"]

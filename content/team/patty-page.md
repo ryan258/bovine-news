@@ -2,6 +2,8 @@
 title: "Patty Page"
 name: "Patty Page"
 slug: "patty-page"
+image: "images/team/patty-page.webp"
+image_alt: "Patty Page smiles at the camera with her hooves folded on the anchor desk."
 jobtitle: "Co-Anchor"
 beat: "Evening Broadcast"
 short_bio: "Sharp, warm, and always the first to ask the follow-up question no one else thought of."

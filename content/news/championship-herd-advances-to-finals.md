@@ -1,6 +1,8 @@
 ---
 title: "Bentonville Bulls Advance to Championship Finals After Overtime Thriller Nobody Watched Correctly"
 slug: "championship-herd-advances-to-finals"
+image: "images/news/championship-herd-advances-to-finals.webp"
+image_alt: "Bulls in plain red and navy uniforms collide around a football in a muddy overtime scrum."
 summary: "The Bulls clinched their division after a dramatic overtime win, setting up a championship match against Pasture United, and a stadium-wide argument about whether anyone actually saw the winning play."
 category: "Sports"
 categories: ["Sports"]

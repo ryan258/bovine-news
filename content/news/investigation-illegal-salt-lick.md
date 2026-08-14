@@ -1,6 +1,8 @@
 ---
 title: "Investigation Uncovers Unpermitted Salt Lick Behind Feed Supply Warehouse"
 slug: "investigation-illegal-salt-lick"
+image: "images/news/investigation-illegal-salt-lick.webp"
+image_alt: "Two cow investigators shine a flashlight on a salt lick behind a warehouse at night."
 summary: "A months-long investigation has uncovered an unpermitted, artisanal, reportedly 'life-changing' salt lick operating in broad daylight behind a feed supply warehouse on County Road 9."
 category: "Investigations"
 categories: ["Investigations"]

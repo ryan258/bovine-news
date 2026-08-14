@@ -2,6 +2,8 @@
 title: "Mooira Nav"
 name: "Mooira Nav"
 slug: "mooira-nav"
+image: "images/team/mooira-nav.webp"
+image_alt: "Mooira Nav points excitedly at a swirling storm on the weather wall."
 jobtitle: "Meteorologist"
 beat: "Weather"
 short_bio: "Tracks every front moving through the pasture with the same seriousness as a category-five hurricane."

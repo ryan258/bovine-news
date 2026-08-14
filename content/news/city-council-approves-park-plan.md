@@ -1,6 +1,8 @@
 ---
 title: "City Council Approves New Park Plan After Six-Hour Hearing, Forty Minutes of Which Concerned One Bench"
 slug: "city-council-approves-park-plan"
+image: "images/news/city-council-approves-park-plan.webp"
+image_alt: "An exhausted city council watches a cow official speak while an empty folding chair sits in a spotlight."
 summary: "The council voted 5-2 to approve the long-debated Creekside Park expansion, ending months of public hearings and one deeply personal dispute over a single park bench."
 category: "Politics"
 categories: ["Politics"]

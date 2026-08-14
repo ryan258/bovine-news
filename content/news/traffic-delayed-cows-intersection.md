@@ -1,6 +1,8 @@
 ---
 title: "Traffic Delayed Nearly an Hour After Herd Enters Main Street Intersection to Discuss Something"
 slug: "traffic-delayed-cows-intersection"
+image: "images/news/traffic-delayed-cows-intersection.webp"
+image_alt: "A herd of cows holds a circle meeting in a blocked intersection while traffic backs up around them."
 summary: "Morning commuters faced significant delays after a small herd wandered into the Main Street and Fifth intersection and simply would not be moved until they had finished talking it over."
 category: "Local"
 categories: ["Local"]

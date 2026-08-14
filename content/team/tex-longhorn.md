@@ -2,6 +2,8 @@
 title: "Tex Longhorn"
 name: "Tex Longhorn"
 slug: "tex-longhorn"
+image: "images/team/tex-longhorn.webp"
+image_alt: "Tex Longhorn laughs behind the sports desk in a gold blazer and football tie."
 jobtitle: "Sports Anchor"
 beat: "Sports"
 short_bio: "Former Pasture United forward turned sports desk anchor. Never misses a highlight, never softens a hot take."

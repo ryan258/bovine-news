@@ -1,6 +1,8 @@
 ---
 title: "Mysterious Gate Opens Overnight; Investigators Ask Residents to Avoid North Pasture"
 slug: "mysterious-gate-opens-overnight"
+image: "images/news/mysterious-gate-opens-overnight.webp"
+image_alt: "Cloven hoofprints lead through mud to an open metal gate and stop at the foggy threshold."
 summary: "Authorities are asking residents to avoid the north pasture while investigators determine who — or what — opened the gate, and why it smells faintly of ranch dressing."
 category: "Investigations"
 categories: ["Investigations"]

@@ -1,6 +1,8 @@
 ---
 title: "Local Farmer Introduces Robotic Feeding System, System Immediately Develops Favorites"
 slug: "robotic-feeding-system"
+image: "images/news/robotic-feeding-system.webp"
+image_alt: "A robotic feeder gives one delighted cow extra feed while another cow glares from behind a rail."
 summary: "A County Road 4 farm has begun using an automated feeding system, one of the first in the region, and it has, within one week, formed a clear and controversial emotional attachment to a cow named Deborah."
 category: "Agriculture"
 categories: ["Agriculture"]
