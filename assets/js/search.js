@@ -5,8 +5,10 @@
   var status = document.querySelector("[data-search-status]");
   if (!input || !results) return;
 
+  var categoryBase = results.dataset.categoryBase || "/categories/";
+
   var index = [];
-  fetch(window.location.origin + "/index.json")
+  fetch(results.dataset.indexUrl)
     .then(function (r) { return r.json(); })
     .then(function (data) { index = data; })
     .catch(function () { status.textContent = "Search index unavailable right now."; });
@@ -21,7 +23,7 @@
       el.innerHTML =
         '<div class="story-card__media"><div class="media-plate media-plate--16x9 media-plate--navy"></div></div>' +
         '<div class="story-card__body">' +
-        '<a class="eyebrow" href="/categories/' + item.category.toLowerCase() + '/">' + item.category + "</a>" +
+        '<a class="eyebrow" href="' + categoryBase + item.category.toLowerCase() + '/">' + item.category + "</a>" +
         '<h3 class="story-card__title"><a href="' + item.url + '">' + item.title + "</a></h3>" +
         '<p class="story-card__summary">' + item.summary + "</p>" +
         '<div class="story-card__meta">' + (item.reporter ? "<span>" + item.reporter + "</span><span class=\"dot\">&middot;</span>" : "") + "<time>" + item.date + "</time></div>" +

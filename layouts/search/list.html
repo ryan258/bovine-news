@@ -12,6 +12,8 @@
     <input id="search-input" type="search" placeholder="Search stories&hellip;" data-search-input autocomplete="off">
   </div>
   <p class="search-status" data-search-status aria-live="polite"></p>
-  <div class="story-grid story-grid--list" data-search-results></div>
+  <div class="story-grid story-grid--list" data-search-results
+    data-index-url="{{ "index.json" | relURL }}"
+    data-category-base="{{ "categories/" | relURL }}"></div>
 </div>
 {{ end }}
