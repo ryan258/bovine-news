@@ -24,7 +24,7 @@
       <div class="article-header__meta">
         {{ with $reporter }}
         <a class="article-header__byline" href="{{ .RelPermalink }}">
-          {{ partial "portrait.html" (dict "color" (.Params.color | default "navy") "class" "portrait--xs") }}
+          {{ partial "portrait.html" (dict "color" (.Params.color | default "navy") "class" "portrait--xs" "image" .Params.image "alt" "") }}
           <span class="article-header__byline-text">
             <span class="article-header__byline-name">By {{ .Params.name }}</span>
             <span class="article-header__byline-title">{{ .Params.jobtitle }}</span>
@@ -48,7 +48,7 @@
   </header>
 
   <div class="container article-hero">
-    {{ partial "media-plate.html" (dict "color" (.Params.color | default "navy") "ratio" "16x9" "label" .Params.category) }}
+    {{ partial "media-plate.html" (dict "color" (.Params.color | default "navy") "ratio" "16x9" "label" .Params.category "src" .Params.image "alt" .Params.image_alt "loading" "eager" "fetchpriority" "high") }}
   </div>
 
   {{ $related := where site.RegularPages "Type" "news" }}

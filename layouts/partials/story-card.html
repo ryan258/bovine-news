@@ -4,7 +4,7 @@
 {{- with $p.Params.author }}{{ $rp := site.GetPage (printf "/team/%s" .) }}{{ with $rp }}{{ $reporter = .Title }}{{ end }}{{ end -}}
 <article class="story-card story-card--{{ $size }}">
   <div class="story-card__media">
-    <a href="{{ $p.RelPermalink }}" tabindex="-1" aria-hidden="true">{{ partial "media-plate.html" (dict "color" ($p.Params.color | default "navy") "ratio" "16x9") }}</a>
+    <a href="{{ $p.RelPermalink }}" tabindex="-1" aria-hidden="true">{{ partial "media-plate.html" (dict "color" ($p.Params.color | default "navy") "ratio" "16x9" "src" $p.Params.image "alt" "") }}</a>
     {{ if $p.Params.breaking_news }}<span class="tag tag--breaking">Breaking</span>{{ end }}
     <a class="tag tag--category" href="{{ (printf "categories/%s/" ($p.Params.category | urlize)) | relURL }}">{{ $p.Params.category }}</a>
   </div>

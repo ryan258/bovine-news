@@ -9,7 +9,7 @@
     {{ $rp := site.GetPage (printf "/team/%s" $item.reporter) }}
     {{ with $rp }}
     <a class="opinion-item" href="{{ .RelPermalink }}">
-      {{ partial "portrait.html" (dict "color" (.Params.color | default "navy") "class" "opinion-item__portrait") }}
+      {{ partial "portrait.html" (dict "color" (.Params.color | default "navy") "class" "opinion-item__portrait" "image" .Params.image "alt" "") }}
       <div>
         <p class="opinion-item__byline">{{ .Params.name }} <span>{{ $item.role }}</span></p>
         <p class="opinion-item__headline">{{ $item.headline }}</p>

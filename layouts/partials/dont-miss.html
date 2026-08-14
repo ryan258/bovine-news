@@ -5,7 +5,7 @@
     <a class="module__link" href="{{ "local/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
   </div>
   <a class="dont-miss-feature" href="{{ $e.featured.link | relURL }}">
-    {{ partial "media-plate.html" (dict "ratio" "16x9") }}
+    {{ partial "media-plate.html" (dict "ratio" "16x9" "src" $e.featured.image "alt" $e.featured.image_alt) }}
     <div class="dont-miss-feature__body">
       <p class="dont-miss-feature__title">{{ $e.featured.title }}</p>
       <p class="dont-miss-feature__dates">{{ $e.featured.dates }}</p>

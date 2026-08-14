@@ -1,7 +1,15 @@
 {{- $color := .color | default "navy" -}}
 {{- $ratio := .ratio | default "16x9" -}}
 {{- $label := .label -}}
+{{- $src := .src -}}
+{{- $alt := .alt | default "" -}}
+{{- $loading := .loading | default "lazy" -}}
+{{- $fetchpriority := .fetchpriority -}}
 <div class="media-plate media-plate--{{ $ratio }} media-plate--{{ $color }}">
+  {{- with $src }}
+  <img class="media-plate__image" src="{{ . | relURL }}" alt="{{ $alt }}" width="1920" height="1080" loading="{{ $loading }}" decoding="async"{{ with $fetchpriority }} fetchpriority="{{ . }}"{{ end }}>
+  {{- else }}
   <span class="media-plate__mark">{{ partial "icon.html" (dict "name" "camera" "class" "media-plate__icon") }}</span>
   {{- with $label }}<span class="media-plate__label">{{ . }}</span>{{ end -}}
+  {{- end }}
 </div>

@@ -52,7 +52,7 @@
   </ul>
 
   <h2 class="section-title">Radar</h2>
-  {{ partial "media-plate.html" (dict "color" "blue" "ratio" "16x9" "label" "Radar Coming Soon") }}
+  {{ partial "media-plate.html" (dict "color" "blue" "ratio" "16x9" "label" "Radar Coming Soon" "src" $w.radar_image "alt" $w.radar_image_alt) }}
 
   {{ $met := site.GetPage "/team/mooira-nav" }}
   {{ with $met }}

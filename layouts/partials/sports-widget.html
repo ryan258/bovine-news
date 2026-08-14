@@ -7,7 +7,7 @@
     </div>
     <a class="sports-card" href="{{ "sports/" | relURL }}">
       <div class="sports-card__media">
-        {{ partial "media-plate.html" (dict "color" "navy" "ratio" "16x9") }}
+        {{ partial "media-plate.html" (dict "color" "navy" "ratio" "16x9" "src" $s.image "alt" $s.image_alt) }}
         <span class="tag tag--category">Game Day</span>
       </div>
       <div class="sports-card__body">

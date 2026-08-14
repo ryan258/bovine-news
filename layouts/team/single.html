@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="profile">
   <div class="container profile__header">
-    {{ partial "portrait.html" (dict "color" (.Params.color | default "navy") "class" "profile__portrait") }}
+    {{ partial "portrait.html" (dict "color" (.Params.color | default "navy") "class" "profile__portrait" "image" .Params.image "alt" .Params.image_alt "loading" "eager") }}
     <div>
       <h1>{{ .Params.name }}</h1>
       <p class="profile__title">{{ .Params.jobtitle }} &middot; {{ .Params.beat }}</p>

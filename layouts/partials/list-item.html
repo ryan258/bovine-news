@@ -3,7 +3,7 @@
 {{- $isVideo := .isVideo | default false -}}
 <a class="list-item" href="{{ $p.RelPermalink }}">
   <span class="list-item__thumb">
-    {{ partial "media-plate.html" (dict "color" ($p.Params.color | default "navy") "ratio" "square") }}
+    {{ partial "media-plate.html" (dict "color" ($p.Params.color | default "navy") "ratio" "square" "src" $p.Params.image "alt" "") }}
     {{ if $isVideo }}<span class="list-item__play">{{ partial "icon.html" (dict "name" "play" "class" "icon--xs") }}</span>{{ end }}
   </span>
   <span class="list-item__body">

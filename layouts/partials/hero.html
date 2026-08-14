@@ -13,7 +13,7 @@
   {{ end }}
   {{ range $i, $p := $featured }}
   <div class="hero-card__slide {{ if eq $i 0 }}is-active{{ end }}" data-hero-slide {{ if ne $i 0 }}hidden{{ end }} role="group" aria-roledescription="slide" aria-label="{{ add $i 1 }} of {{ len $featured }}">
-    {{ partial "media-plate.html" (dict "color" ($p.Params.color | default "navy") "ratio" "hero") }}
+    {{ partial "media-plate.html" (dict "color" ($p.Params.color | default "navy") "ratio" "hero" "src" $p.Params.image "alt" $p.Params.image_alt "loading" (cond (eq $i 0) "eager" "lazy") "fetchpriority" (cond (eq $i 0) "high" "auto")) }}
     <span class="tag tag--category">{{ $p.Params.category }}</span>
     <div class="hero-card__scrim"></div>
     <div class="hero-card__content">
