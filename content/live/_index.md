@@ -5,4 +5,11 @@ seo_description: "Watch the Bovine News Network live broadcast, or check the sch
 on_air: false
 current_program: ""
 next_program: "Evening Broadcast — 6:00 PM"
+build:
+  render: never
+  list: never
+cascade:
+  build:
+    render: never
+    list: never
 ---

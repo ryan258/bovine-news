@@ -9,6 +9,10 @@ summarylength = 40
   brandLine = "No Bull. Just Moo-Point."
   city = "Bentonville, AR"
 
+[params.features]
+  # Temporarily retired from the public experience; source and content are preserved.
+  video = false
+
 [taxonomies]
   category = "categories"
   tag = "tags"
