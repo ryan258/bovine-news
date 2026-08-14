@@ -15,4 +15,4 @@ Accessibility is an ongoing effort. We regularly review the site using automated
 
 ## Feedback
 
-If you encounter an accessibility barrier anywhere on this site, please let us know through our [contact page](/contact/) so we can address it.
+If you encounter an accessibility barrier anywhere on this site, please let us know through our [contact page]({{< relref "contact" >}}) so we can address it.

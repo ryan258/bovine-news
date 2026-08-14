@@ -17,7 +17,7 @@ A months-long Bovine News investigation has uncovered an unpermitted salt lick o
 
 ## How the Investigation Started
 
-The story began with a single anonymous tip submitted through our [contact page](/contact/) in the spring, describing "unusual gathering patterns" near the warehouse's rear lot — a phrase that turned out to mean a line of forty cows standing in respectful, almost reverent silence, waiting their turn.
+The story began with a single anonymous tip submitted through our [contact page]({{< relref "contact" >}}) in the spring, describing "unusual gathering patterns" near the warehouse's rear lot — a phrase that turned out to mean a line of forty cows standing in respectful, almost reverent silence, waiting their turn.
 
 Records obtained through a public-records request show the site was never issued the required supplement distribution permit, a fact that has done nothing to slow demand. One regular described the lick's flavor profile as "hay-forward, with a smoky finish," which investigators note is not a phrase anyone should be able to say about a mineral block.
 

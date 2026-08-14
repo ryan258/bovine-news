@@ -15,4 +15,4 @@ We use minimal, privacy-friendly analytics to understand overall site traffic. W
 
 ## Contact
 
-Questions about this policy can be directed to our [contact page](/contact/).
+Questions about this policy can be directed to our [contact page]({{< relref "contact" >}}).

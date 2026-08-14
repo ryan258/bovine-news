@@ -30,4 +30,4 @@ Conditions are expected to deteriorate through the afternoon as a cold front mov
 
 The weather desk recommends staying indoors during the height of the storm and avoiding low-lying areas prone to flash flooding along the creek. Mooira, for her part, will not be doing either of those things and has already informed her editor.
 
-Bovine News will provide updates as the watch develops, including on our full [weather page](/weather/), and, weather permitting, live from a poncho.
+Bovine News will provide updates as the watch develops, including on our full [weather page]({{< relref "weather" >}}), and, weather permitting, live from a poncho.
