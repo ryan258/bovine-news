@@ -36,17 +36,21 @@
   if (hero) {
     var slides = Array.prototype.slice.call(hero.querySelectorAll("[data-hero-slide]"));
     var dots = Array.prototype.slice.call(hero.querySelectorAll("[data-hero-dot]"));
+    var pauseBtn = hero.querySelector("[data-hero-pause]");
+    var pauseLabel = hero.querySelector("[data-hero-pause-label]");
     var current = 0;
     var timer = null;
+    var userPaused = false;
+    var hovering = false;
 
     function show(index) {
       slides[current].hidden = true;
       slides[current].classList.remove("is-active");
-      if (dots[current]) dots[current].classList.remove("is-active");
+      if (dots[current]) { dots[current].classList.remove("is-active"); dots[current].setAttribute("aria-current", "false"); }
       current = (index + slides.length) % slides.length;
       slides[current].hidden = false;
       slides[current].classList.add("is-active");
-      if (dots[current]) dots[current].classList.add("is-active");
+      if (dots[current]) { dots[current].classList.add("is-active"); dots[current].setAttribute("aria-current", "true"); }
     }
 
     function next() { show(current + 1); }
@@ -62,8 +66,23 @@
 
     function restart() {
       if (timer) clearInterval(timer);
-      if (!reduceMotion && slides.length > 1) timer = setInterval(next, 7000);
+      timer = null;
+      if (!reduceMotion && !userPaused && !hovering && slides.length > 1) timer = setInterval(next, 7000);
     }
+
+    if (pauseBtn) {
+      pauseBtn.addEventListener("click", function () {
+        userPaused = !userPaused;
+        pauseBtn.setAttribute("aria-pressed", String(userPaused));
+        if (pauseLabel) pauseLabel.textContent = userPaused ? "Resume story rotation" : "Pause story rotation";
+        restart();
+      });
+      hero.addEventListener("mouseenter", function () { hovering = true; restart(); });
+      hero.addEventListener("mouseleave", function () { hovering = false; restart(); });
+      hero.addEventListener("focusin", function () { hovering = true; restart(); });
+      hero.addEventListener("focusout", function () { hovering = false; restart(); });
+    }
+
     restart();
   }
 
@@ -75,7 +94,7 @@
     });
   }
 
-  // Contact form mock submit
+  // Contact form: real validation, but no backend exists yet, so we say so instead of faking success
   var contactForm = document.querySelector("[data-contact-form]");
   if (contactForm) {
     contactForm.addEventListener("submit", function (e) {
@@ -83,6 +102,17 @@
       var success = contactForm.querySelector("[data-contact-success]");
       if (success) success.hidden = false;
       contactForm.reset();
+    });
+  }
+
+  // Newsletter form: same story — validate for real, but don't fake a subscription
+  var newsletterForm = document.querySelector("[data-newsletter-form]");
+  if (newsletterForm) {
+    newsletterForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var success = document.querySelector("[data-newsletter-success]");
+      if (success) success.hidden = false;
+      newsletterForm.reset();
     });
   }
 })();
