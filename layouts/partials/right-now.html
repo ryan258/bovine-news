@@ -1,5 +1,6 @@
 {{- $w := site.Data.weather -}}
 {{- $live := site.GetPage "/live/" -}}
+{{- $videoEnabled := site.Params.features.video -}}
 <div class="right-now">
   <div class="right-now__card">
     <h2 class="right-now__title">Right Now</h2>
@@ -29,6 +30,7 @@
     </div>
   </div>
 
+  {{ if $videoEnabled }}
   <div class="watch-live-card">
     <p class="watch-live-card__label">Watch Live</p>
     <p class="watch-live-card__title">Bovine News Live Stream</p>
@@ -39,4 +41,5 @@
     <p class="watch-live-card__caption">Off Air &middot; Next: {{ $live.Params.next_program }}</p>
     {{ end }}
   </div>
+  {{ end }}
 </div>

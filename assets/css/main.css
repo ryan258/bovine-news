@@ -408,7 +408,9 @@ p { margin: 0 0 var(--space-4); color: var(--gray-300); }
 .trending-bar__list a:hover { border-color: var(--red-400); color: var(--white); }
 
 .newsroom-row { padding-block: var(--space-7); display: grid; grid-template-columns: 2fr 1fr 0.85fr; gap: var(--space-6); }
+.newsroom-row--text-only { grid-template-columns: 2fr 1fr; }
 .feature-row { padding-block: var(--space-7); border-top: 1px solid var(--navy-800); display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: var(--space-6); }
+.feature-row--text-only { grid-template-columns: 1fr 1fr; }
 
 .feature-video { display: block; }
 .feature-video__media { position: relative; border-radius: var(--radius); overflow: hidden; margin-bottom: var(--space-3); }

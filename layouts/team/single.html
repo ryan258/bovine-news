@@ -38,6 +38,8 @@
   </div>
   {{ end }}
 
+  {{ $videoEnabled := site.Params.features.video }}
+  {{ if $videoEnabled }}
   {{ $videos := where site.RegularPages "Section" "video" }}
   {{ $videos = where $videos "Params.reporter" .Params.slug }}
   {{ if $videos }}
@@ -59,6 +61,7 @@
       {{ end }}
     </div>
   </div>
+  {{ end }}
   {{ end }}
 </div>
 {{ end }}

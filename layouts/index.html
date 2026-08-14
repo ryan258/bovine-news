@@ -1,4 +1,5 @@
 {{ define "main" }}
+{{ $videoEnabled := site.Params.features.video }}
 {{ $hero := where site.RegularPages "Type" "news" }}
 {{ $hero = where $hero "Params.featured" true }}
 {{ $hero = ($hero.ByParam "published_date").Reverse | first 5 }}
@@ -31,7 +32,7 @@
 {{ partial "breaking-ticker.html" . }}
 {{ partial "trending-bar.html" . }}
 
-<div class="container newsroom-row">
+<div class="container newsroom-row{{ if not $videoEnabled }} newsroom-row--text-only{{ end }}">
   <div>
     <div class="module__head">
       <h2>Latest News</h2>
@@ -49,6 +50,7 @@
     {{ $local := where site.RegularPages "Params.category" "Local" }}
     {{ range first 5 (($local.ByParam "published_date").Reverse) }}{{ partial "list-item.html" (dict "page" .) }}{{ end }}
   </div>
+  {{ if $videoEnabled }}
   <div>
     <div class="module__head">
       <h2>Latest Videos</h2>
@@ -57,10 +59,13 @@
     {{ $videos := where site.RegularPages "Section" "video" }}
     {{ range first 3 (($videos.ByParam "published_date").Reverse) }}{{ partial "list-item.html" (dict "page" . "isVideo" true) }}{{ end }}
   </div>
+  {{ end }}
 </div>
 
-<div class="container feature-row">
+<div class="container feature-row{{ if not $videoEnabled }} feature-row--text-only{{ end }}">
+  {{ if $videoEnabled }}
   {{ partial "watch-listen.html" . }}
+  {{ end }}
   {{ partial "opinion.html" . }}
   {{ partial "dont-miss.html" . }}
 </div>

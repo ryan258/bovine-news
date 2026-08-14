@@ -2,6 +2,7 @@
 {{- $featured = where $featured "Params.featured" true -}}
 {{- $featured = ($featured.ByParam "published_date").Reverse -}}
 {{- $featured = $featured | first 5 -}}
+{{- $videoEnabled := site.Params.features.video -}}
 <div class="hero-card" data-hero role="region" aria-roledescription="carousel" aria-label="Lead stories">
   {{ if gt (len $featured) 1 }}
   <button type="button" class="icon-btn hero-card__pause" data-hero-pause aria-pressed="false">
@@ -20,7 +21,9 @@
       <p class="hero-card__summary">{{ $p.Params.summary }}</p>
       <div class="hero-card__cta">
         <a class="btn btn--primary" href="{{ $p.RelPermalink }}">Read Full Story</a>
+        {{ if $videoEnabled }}
         <a class="btn btn--ghost" href="{{ "video/" | relURL }}">{{ partial "icon.html" (dict "name" "play" "class" "icon--sm") }} Watch Coverage</a>
+        {{ end }}
       </div>
     </div>
   </div>
