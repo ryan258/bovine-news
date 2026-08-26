@@ -1,0 +1,119 @@
+# THE GATE FILES — case dossier for the ongoing north pasture investigation.
+# Maintained by the Bovine News investigative desk. Do not remove exhibits;
+# the desk will notice, and the desk remembers.
+
+case:
+  number: "BN-2026-0813-GATE"
+  status: "ONGOING"
+  opened: "Aug. 13, 2026, 5:30 a.m."
+  lead_reporter: "bessie-barnes"
+  classification: "PUBLIC INTEREST, BARELY"
+
+timeline:
+  - date: "Feb. 14, 2025"
+    title: "The First Incident"
+    body: "The north pasture gate is found open at dawn. The county blames \"the wind.\" The wind declines to comment. Everyone moves on, which, in hindsight, was the mistake."
+    tone: normal
+  - date: "Jun. 2, 2025"
+    title: "Latch Replaced"
+    body: "A new latch is installed at a cost of $34.50, approved unanimously by the county board in under a minute, making it the fastest thing the board has ever agreed on."
+    tone: normal
+  - date: "Mar. 9, 2026"
+    title: "Salad Bar Opens"
+    body: "The community salad bar opens 40 yards beyond the gate. Officials call the location \"coincidental.\" Nobody asks a follow-up question, which investigators now describe as \"the second mistake.\""
+    tone: normal
+  - date: "Jun. 30, 2026"
+    title: "Hinges Oiled"
+    body: "Someone oils the gate hinges overnight. No work order exists. The gate becomes noticeably quieter. Several residents report finding this more unsettling than the noise."
+    tone: quiet
+  - date: "Aug. 13, 2026 · 4:52 a.m."
+    title: "The Gate Stands Open"
+    body: "A routine perimeter check finds the main gate fully open, latched back neatly against the fence. Hoofprints lead to the salad bar, pause, and return. A note is found wedged under the latch. It says only: \"Thank you for the opportunity.\""
+    tone: alarm
+  - date: "Aug. 13, 2026 · 7:10 a.m."
+    title: "Bovine News Arrives"
+    body: "This desk takes over the investigation after the county's lead detective is reassigned to a dispute over a bench. We have not been asked to leave. Yet."
+    tone: alarm
+  - date: "Present day"
+    title: "Status: Unsolved"
+    body: "No arrests. No confessions. One very polite note. The gate remains operational, which investigators describe as \"the most disturbing detail of all.\""
+    tone: current
+
+exhibits:
+  - id: "A"
+    name: "Security Footage Still"
+    detail: "Frame 647 of 11 minutes continuous. Subject looks directly into lens for the duration of the recording. Audio contains only chewing, described by analysts as \"unhurried.\""
+    status: "Logged"
+  - id: "B"
+    name: "The Latch"
+    detail: "Undamaged. Freshly oiled. Forensics describes its condition as \"suspiciously good manners.\" Chain of custody maintained by everyone who has ever touched it, allegedly."
+    status: "In evidence"
+  - id: "C"
+    name: "Ranch Dressing Packets"
+    detail: "Thirty-seven empty packets recovered from a wheelbarrow 12 feet from the salad bar. No one will acknowledge the wheelbarrow. The wheelbarrow has been photographed anyway."
+    status: "Contested"
+  - id: "D"
+    name: "The Note"
+    detail: "Handwriting analysis inconclusive. Paper stock matches the feed shed ledger. Reads, in full: \"Thank you for the opportunity.\" Punctuation flawless."
+    status: "In evidence"
+  - id: "E"
+    name: "Hoofprint Cast"
+    detail: "Size 9 cloven, weight estimated 1,400 lbs, stride length consistent with \"someone taking their time.\" Cast poured by this desk using a coffee can and optimism."
+    status: "Amateur"
+  - id: "F"
+    name: "Salad Bar Register Tape"
+    detail: "Receipt timestamped 3:11 a.m. Total: $0.00. Payment method listed as \"tab.\" The salad bar was closed at the time. It has no tab system."
+    status: "Under review"
+
+suspects:
+  - code: "SUSPECT 01"
+    alias: "The Morning Regular"
+    dossier: "First to the salad bar every day since opening. When asked where she was the night of the incident, she said \"here,\" then repeated it four more times without being asked."
+    likelihood: 62
+  - code: "SUSPECT 02"
+    alias: "Deborah"
+    dossier: "The community's favorite. Which is precisely why this desk must ask. Deborah declined a formal interview but sent a statement reading, in full, \"Moo,\" which our legal team advises us not to interpret."
+    likelihood: 48
+  - code: "SUSPECT 03"
+    alias: "The Wind"
+    dossier: "Formally blamed for the February 2025 incident. Formally cleared of the August 2026 incident, because the gate was opened politely and the wind has never once been polite. Remains a person of interest out of principle."
+    likelihood: 7
+  - code: "SUSPECT 04"
+    alias: "Unidentified Ruminant"
+    dossier: "Composite sketch produced from witness descriptions, all of which were \"a cow.\" The sketch is therefore a cow. If you recognize this cow, you recognize most cows, and we ask that you narrow it down."
+    likelihood: 31
+
+memo:
+  header: "COUNTY GRAZING AUTHORITY — INTERNAL MEMORANDUM"
+  ref: "REF: BN-2026-0813-GATE · DISTRIBUTION: UNNECESSARY"
+  lines:
+    - parts:
+        - t: "At approximately "
+        - r: "0430"
+        - t: " hours, the north pasture gate was discovered in an open position by "
+        - r: "the perimeter checker, who would like it noted that she also found it unsettling"
+        - t: ". The latch showed no signs of forced entry. The hinges had recently been oiled with what lab analysis confirms was "
+        - r: "the good oil, the expensive one, the bottle that was supposed to be reserved for the tractor"
+        - t: ", a detail we ask personnel to stop fixating on."
+      allow_declass: true
+    - parts:
+        - t: "Interviews conducted overnight produced no actionable intelligence. Witnesses uniformly reported hearing \"nothing unusual.\" One witness added that the moon \"seemed aware,\" which has been recorded here verbatim because "
+        - r: "it was said with alarming confidence"
+        - t: "."
+      allow_declass: true
+    - parts:
+        - t: "This office has identified four persons of interest, one of whom is "
+        - r: "extremely popular, which historically has never once prevented anything"
+        - t: ", and another of which is "
+        - r: "the wind, again, somehow"
+        - t: ". We are not saying this is suspicious. We are noting that it rhymes with suspicious."
+      allow_declass: true
+  recommendation:
+    pre: "RECOMMENDATION: Replace the latch. Resume oiling the hinges ourselves, at scale, going forward. And until further notice, stop asking "
+    redacted: "Deborah"
+    post: " where she was between 11 p.m. and 4 a.m., because she keeps answering, and the answers keep being fine, and we do not know what to do with that."
+
+verdict:
+  heading: "The Public Verdict"
+  subhead: "This investigation remains open. The verdict, however, belongs to you."
+  storage_key: "gatefiles-verdict"

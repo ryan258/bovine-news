@@ -1,0 +1,37 @@
+{{- $d := hugo.Data.gatefiles -}}
+<section class="gate-section gate-section--suspects" aria-labelledby="gate-suspects-heading">
+  <div class="container gate-container">
+    <header class="gate-module-head" data-reveal>
+      <p class="gate-module-head__eyebrow">Persons of Interest</p>
+      <h2 id="gate-suspects-heading">The Lineup</h2>
+      <p class="gate-module-head__sub">No charges have been filed. The desk presents the following in the interest of the public&rsquo;s right to squint.</p>
+    </header>
+
+    <ul class="gate-lineup">
+      {{ range $d.suspects }}
+      <li class="gate-suspect" data-reveal>
+        <div class="gate-suspect__portrait" aria-hidden="true">
+          <svg viewBox="0 0 100 100" role="img">
+            <rect class="gate-suspect__bg" width="100" height="100"/>
+            <g class="gate-suspect__silhouette">
+              <ellipse cx="50" cy="46" rx="26" ry="24"/>
+              <ellipse cx="30" cy="20" rx="9" ry="12" transform="rotate(-28 30 20)"/>
+              <ellipse cx="70" cy="20" rx="9" ry="12" transform="rotate(28 70 20)"/>
+              <ellipse cx="50" cy="60" rx="14" ry="10"/>
+            </g>
+          </svg>
+        </div>
+        <p class="gate-suspect__code">{{ .code }}</p>
+        <h3 class="gate-suspect__alias">&ldquo;{{ .alias }}&rdquo;</h3>
+        <p class="gate-suspect__dossier">{{ .dossier }}</p>
+        <div class="gate-meter">
+          <div class="gate-meter__head"><span>Desk confidence</span><span>{{ .likelihood }}%</span></div>
+          <div class="gate-meter__track" role="img" aria-label="Desk confidence: {{ .likelihood }} percent">
+            <div class="gate-meter__fill" data-meter-fill data-value="{{ .likelihood }}"></div>
+          </div>
+        </div>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</section>

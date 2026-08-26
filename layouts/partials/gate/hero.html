@@ -1,0 +1,38 @@
+{{- $case := hugo.Data.gatefiles.case -}}
+<header class="gate-hero">
+  <div class="gate-hero__media" aria-hidden="true">
+    {{ with .Page.Params.image }}
+    <img src="{{ . | relURL }}" alt="" loading="eager" decoding="async">
+    {{ end }}
+  </div>
+  <div class="gate-hero__scrim" aria-hidden="true"></div>
+
+  <div class="container gate-hero__inner">
+    <div class="gate-hero__copy">
+      <p class="gate-hero__kicker"><span class="gate-kicker-flag">Special Report</span><span>The Bovine News Investigative Desk</span></p>
+      <h1 class="gate-hero__title">{{ .Page.Title }}</h1>
+      <p class="gate-hero__deck">{{ .Page.Params.summary }}</p>
+      <p class="gate-hero__byline">
+        By Bessie Barnes, Lead Investigative Correspondent
+        <span>Filed {{ $case.opened }} &middot; Updated continuously</span>
+      </p>
+    </div>
+
+    <aside class="gate-stamp" aria-label="Case file details">
+      <p class="gate-stamp__brand">Bovine News &middot; Case File</p>
+      <dl>
+        <dt>Case No.</dt>
+        <dd>{{ $case.number }}</dd>
+        <dt>Status</dt>
+        <dd><span class="gate-stamp__status">{{ $case.status }}</span></dd>
+        <dt>Opened</dt>
+        <dd>{{ $case.opened }}</dd>
+        <dt>Classification</dt>
+        <dd>{{ $case.classification }}</dd>
+      </dl>
+      <span class="gate-stamp__seal" aria-hidden="true">ONGOING</span>
+    </aside>
+  </div>
+
+  <p class="gate-hero__scroll" aria-hidden="true">Scroll to review the evidence<span class="gate-hero__scroll-line"></span></p>
+</header>

@@ -1,0 +1,26 @@
+{{- $d := hugo.Data.gatefiles -}}
+<section class="gate-section gate-section--verdict" aria-labelledby="gate-verdict-heading">
+  <div class="container gate-container gate-container--narrow">
+    <header class="gate-module-head" data-reveal>
+      <p class="gate-module-head__eyebrow">Audience Verdict</p>
+      <h2 id="gate-verdict-heading">{{ $d.verdict.heading }}</h2>
+      <p class="gate-module-head__sub">{{ $d.verdict.subhead }}</p>
+    </header>
+
+    <div class="gate-poll" data-gate-verdict data-storage-key="{{ $d.verdict.storage_key }}">
+      <div class="gate-poll__choices" data-verdict-choices>
+        {{ range $i, $s := $d.suspects }}
+        <button type="button" class="gate-poll__choice" data-verdict-choice data-index="{{ $i }}" data-weight="{{ $s.likelihood }}">
+          <span class="gate-poll__code">{{ $s.code }}</span>
+          <span class="gate-poll__alias">{{ $s.alias }}</span>
+          <span class="gate-poll__pct" data-verdict-pct hidden>0%</span>
+        </button>
+        {{ end }}
+      </div>
+      <div class="gate-poll__foot" data-verdict-foot hidden>
+        <p>One vote per browser. This is not a threat.</p>
+        <p class="gate-poll__turnout">Turnout so far: <strong data-verdict-turnout>1,204</strong> browsers, all of them wrong.</p>
+      </div>
+    </div>
+  </div>
+</section>

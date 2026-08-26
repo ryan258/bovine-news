@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <span class="eyebrow eyebrow--light">The Investigative Desk</span>
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Content | plainify }}</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="story-grid story-grid--list">
+    {{ range .Pages.ByParam "published_date" }}{{ partial "story-card.html" (dict "page" . "size" "full") }}{{ end }}
+  </div>
+</div>
+{{ end }}

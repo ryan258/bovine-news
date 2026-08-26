@@ -1,0 +1,20 @@
+{{- $case := hugo.Data.gatefiles.case -}}
+<section class="gate-promo" aria-labelledby="gate-promo-heading">
+  <div class="container">
+    <a class="gate-promo__card" href="{{ "special-reports/the-gate-files/" | relURL }}">
+      <div class="gate-promo__stamp" aria-hidden="true">
+        <span>Case File</span>
+        {{ $case.number }}
+      </div>
+      <div class="gate-promo__body">
+        <p class="gate-promo__kicker"><span class="live-dot" aria-hidden="true"></span> Special Report &middot; Ongoing Investigation</p>
+        <h2 id="gate-promo-heading">THE GATE FILES</h2>
+        <p class="gate-promo__deck">One gate. One note. Thirty-seven packets of ranch dressing. Read the investigation the county describes as &ldquo;unnecessary&rdquo; and this desk describes as necessary.</p>
+      </div>
+      <ul class="gate-promo__exhibits" aria-hidden="true">
+        <li>A</li><li>B</li><li>C</li><li>D</li><li>E</li><li>F</li>
+      </ul>
+      <span class="btn btn--primary gate-promo__cta">Open the Case File {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</span>
+    </a>
+  </div>
+</section>

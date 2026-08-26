@@ -1,0 +1,23 @@
+{{- $d := hugo.Data.gatefiles -}}
+<section class="gate-section gate-section--timeline" aria-labelledby="gate-timeline-heading">
+  <div class="container gate-container">
+    <header class="gate-module-head" data-reveal>
+      <p class="gate-module-head__eyebrow">Exhibit Series · Chronology</p>
+      <h2 id="gate-timeline-heading">Eighteen Months of Rhyming</h2>
+      <p class="gate-module-head__sub">A complete reconstruction of gate-related activity, compiled from county records, field visits, and one very long night with a highlighter.</p>
+    </header>
+
+    <ol class="gate-timeline">
+      {{ range $i, $e := $d.timeline }}
+      <li class="gate-timeline__item gate-timeline__item--{{ $e.tone }}" data-reveal>
+        <span class="gate-timeline__dot" aria-hidden="true"></span>
+        <time class="gate-timeline__date">{{ $e.date }}</time>
+        <div class="gate-timeline__card">
+          <h3>{{ $e.title }}</h3>
+          <p>{{ $e.body }}</p>
+        </div>
+      </li>
+      {{ end }}
+    </ol>
+  </div>
+</section>

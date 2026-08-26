@@ -1,0 +1,39 @@
+{{- $d := hugo.Data.gatefiles -}}
+{{- $memo := $d.memo -}}
+<section class="gate-section gate-section--memo" aria-labelledby="gate-memo-heading">
+  <div class="container gate-container">
+    <header class="gate-module-head" data-reveal>
+      <p class="gate-module-head__eyebrow">Obtained by this desk</p>
+      <h2 id="gate-memo-heading">The Memorandum</h2>
+      <p class="gate-module-head__sub">Portions remain redacted pending review. Readers may attempt declassification. The desk takes no responsibility for what is found.</p>
+    </header>
+
+    <div class="gate-doc" data-reveal>
+      <div class="gate-doc__paper">
+        <span class="gate-doc__stamp" aria-hidden="true">DECLASSIFIED<br>IN THE PUBLIC INTEREST</span>
+        <p class="gate-doc__header">{{ $memo.header }}</p>
+        <p class="gate-doc__ref">{{ $memo.ref }}</p>
+
+        {{ range $memo.lines }}
+        <p class="gate-doc__line">
+          {{ range .parts }}
+          {{- if .r -}}<button type="button" class="gate-redact" data-declassify aria-pressed="false"><span class="gate-redact__bar" aria-hidden="true"></span><span class="sr-only">Redacted text: </span><span class="gate-redact__text">{{ .r }}</span></button>{{- else -}}{{ .t }}{{- end }}
+          {{- end }}
+        </p>
+        {{ end }}
+
+        <p class="gate-doc__line gate-doc__line--rec">
+          {{ $memo.recommendation.pre }}<button type="button" class="gate-redact gate-redact--strong" data-declassify aria-pressed="false"><span class="gate-redact__bar" aria-hidden="true"></span><span class="sr-only">Redacted text: </span><span class="gate-redact__text">{{ $memo.recommendation.redacted }}</span></button>{{ $memo.recommendation.post }}
+        </p>
+        <p class="gate-doc__sig">/s/ Deputy Director, Office of Pasture Integrity<span>Distribution list withheld at the request of the distribution list.</span></p>
+      </div>
+
+      <div class="gate-doc__actions">
+        <button type="button" class="btn btn--primary" data-declassify-all aria-pressed="false">
+          Request Declassification
+        </button>
+        <p class="gate-doc__note" data-declassify-note hidden>Declassification approved. The desk thanks you for your service.</p>
+      </div>
+    </div>
+  </div>
+</section>

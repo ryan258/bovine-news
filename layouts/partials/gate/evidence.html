@@ -1,0 +1,22 @@
+{{- $d := hugo.Data.gatefiles -}}
+<section class="gate-section gate-section--evidence" aria-labelledby="gate-evidence-heading">
+  <div class="container gate-container">
+    <header class="gate-module-head" data-reveal>
+      <p class="gate-module-head__eyebrow">Physical Evidence</p>
+      <h2 id="gate-evidence-heading">The Evidence Board</h2>
+      <p class="gate-module-head__sub">Every item below has been logged, photographed, and described by technicians using words like &ldquo;considered.&rdquo;</p>
+    </header>
+
+    <ul class="gate-exhibits">
+      {{ range $d.exhibits }}
+      <li class="gate-exhibit" data-reveal>
+        <span class="gate-exhibit__tape" aria-hidden="true"></span>
+        <span class="gate-exhibit__id">EXHIBIT {{ .id }}</span>
+        <h3 class="gate-exhibit__name">{{ .name }}</h3>
+        <p class="gate-exhibit__detail">{{ .detail }}</p>
+        <p class="gate-exhibit__status"><span>Status:</span> {{ .status }}</p>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
