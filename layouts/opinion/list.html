@@ -1,0 +1,37 @@
+{{ define "main" }}
+<div class="page-header">
+  <div class="container">
+    <span class="eyebrow">Commentary</span>
+    <h1>{{ .Title }}</h1>
+    <div class="page-header__intro">{{ .Content }}</div>
+  </div>
+</div>
+
+<div class="container">
+  {{ $pages := (.Pages.ByParam "published_date").Reverse }}
+  {{ if $pages }}
+  <div class="op-ed-list">
+    {{ range $pages }}
+    {{ $rp := "" }}
+    {{ with .Params.author }}{{ $rp = site.GetPage (printf "/team/%s" .) }}{{ end }}
+    <article class="op-ed-item">
+      {{ with $rp }}{{ partial "portrait.html" (dict "color" (.Params.color | default "navy") "class" "op-ed-item__portrait" "image" .Params.image "alt" "") }}{{ end }}
+      <div class="op-ed-item__body">
+        <p class="op-ed-item__byline">
+          {{ with $rp }}<a href="{{ .RelPermalink }}">{{ .Params.name }}</a><span> · {{ .Params.jobtitle }}</span>{{ end }}
+        </p>
+        <h2 class="op-ed-item__headline"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <p class="op-ed-item__summary">{{ .Params.summary }}</p>
+        <p class="op-ed-item__meta">
+          {{ with .Params.published_date }}<time datetime="{{ . | time.Format "2006-01-02T15:04:05Z07:00" }}">{{ . | time.Format "January 2, 2006 · 3:04 PM" }}</time>{{ end }}
+          <a class="module__link" href="{{ .RelPermalink }}">Read Column {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--xs") }}</a>
+        </p>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+  {{ else }}
+  <p class="empty-state">No columns yet — the editorial board is deliberating.</p>
+  {{ end }}
+</div>
+{{ end }}

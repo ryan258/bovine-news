@@ -1,14 +1,14 @@
 <div>
   <div class="module__head">
     <h2>Opinion</h2>
-    <a class="module__link" href="{{ "team/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+    <a class="module__link" href="{{ "opinion/" | relURL }}">View All {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
   </div>
   <div class="opinion-list">
-    {{ range site.Data.opinion }}
+    {{ range hugo.Data.opinion }}
     {{ $item := . }}
     {{ $rp := site.GetPage (printf "/team/%s" $item.reporter) }}
     {{ with $rp }}
-    <a class="opinion-item" href="{{ .RelPermalink }}">
+    <a class="opinion-item" href="{{ $item.url | relURL }}">
       {{ partial "portrait.html" (dict "color" (.Params.color | default "navy") "class" "opinion-item__portrait" "image" .Params.image "alt" "") }}
       <div>
         <p class="opinion-item__byline">{{ .Params.name }} <span>{{ $item.role }}</span></p>

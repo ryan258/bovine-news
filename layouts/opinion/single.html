@@ -1,0 +1,76 @@
+{{ define "main" }}
+{{ $rp := "" }}
+{{ with .Params.author }}{{ $rp = site.GetPage (printf "/team/%s" .) }}{{ end }}
+
+<article class="op-ed">
+  <header class="article-header">
+    <div class="container article-header__inner">
+      <a class="eyebrow" href="{{ "opinion/" | relURL }}">Opinion</a>
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.summary }}<p class="article-header__deck">{{ . }}</p>{{ end }}
+      <div class="article-header__meta">
+        {{ with $rp }}
+        <a class="article-header__byline" href="{{ .RelPermalink }}">
+          {{ partial "portrait.html" (dict "color" (.Params.color | default "navy") "class" "portrait--xs" "image" .Params.image "alt" "") }}
+          <span class="article-header__byline-text">
+            <span class="article-header__byline-name">By {{ .Params.name }}</span>
+            <span class="article-header__byline-title">{{ .Params.jobtitle }}</span>
+          </span>
+        </a>
+        {{ end }}
+        <span class="article-header__datetime">
+          {{ with .Params.published_date }}<time datetime="{{ . | time.Format "2006-01-02T15:04:05Z07:00" }}">{{ . | time.Format "January 2, 2006 · 3:04 PM" }}</time>{{ end }}
+          <span>{{ .ReadingTime }} min read</span>
+        </span>
+      </div>
+      <div class="share-row">
+        <span>Share:</span>
+        {{ $shareText := printf "%s — %s" .Title site.Title }}
+        <a href="{{ printf "https://twitter.com/intent/tweet?text=%s&url=%s" ($shareText | urlquery) (.Permalink | urlquery) }}" target="_blank" rel="noopener" aria-label="Share on X (opens in a new tab)">{{ partial "icon.html" (dict "name" "x" "class" "icon--sm") }}</a>
+        <a href="{{ printf "https://www.facebook.com/sharer/sharer.php?u=%s" (.Permalink | urlquery) }}" target="_blank" rel="noopener" aria-label="Share on Facebook (opens in a new tab)">{{ partial "icon.html" (dict "name" "facebook" "class" "icon--sm") }}</a>
+        <a href="{{ printf "mailto:?subject=%s&body=%s" (replace ($shareText | urlquery) "+" "%20") (.Permalink | urlquery) }}" aria-label="Share via email">{{ partial "icon.html" (dict "name" "mail" "class" "icon--sm") }}</a>
+        <button type="button" class="icon-btn" data-copy-link aria-label="Copy link">{{ partial "icon.html" (dict "name" "share" "class" "icon--sm") }}</button>
+        <span class="share-row__copied" data-copy-feedback hidden role="status">Link copied</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container article-layout">
+    <div class="article-body op-ed__body">
+      {{ .Content }}
+
+      <p class="op-ed-disclaimer">Opinion columns reflect the views of the bylined columnist alone. They are not reported stories and do not represent the Bovine News Network, its editorial board, or, in several documented cases, the columnist's own herd.</p>
+
+      {{ with $rp }}
+      <div class="sidebar-card author-bio">
+        <h2>About the Columnist</h2>
+        {{ partial "reporter-card.html" . }}
+      </div>
+      {{ end }}
+    </div>
+
+    <aside class="article-sidebar">
+      <div class="sidebar-card">
+        <h2>More Opinion</h2>
+        <div class="related-list">
+          {{ $more := where site.RegularPages "Type" "opinion" }}
+          {{ $more = where $more "RelPermalink" "ne" .RelPermalink }}
+          {{ range (($more.ByParam "published_date").Reverse | first 5) }}{{ partial "list-item.html" (dict "page" . "showCategory" false) }}{{ end }}
+        </div>
+        <a class="module__link" href="{{ "opinion/" | relURL }}">All Columns {{ partial "icon.html" (dict "name" "arrow-right" "class" "icon--sm") }}</a>
+      </div>
+
+      {{ with hugo.Data.trending }}
+      <div class="sidebar-card">
+        <h2>Trending Now</h2>
+        <ol class="trending-list">
+          {{ range $i, $t := first 5 . }}
+          <li><span class="trending-list__num">{{ add $i 1 }}</span><a href="{{ (printf "search/?q=%s" ($t | urlquery)) | relURL }}">{{ $t }}</a></li>
+          {{ end }}
+        </ol>
+      </div>
+      {{ end }}
+    </aside>
+  </div>
+</article>
+{{ end }}
