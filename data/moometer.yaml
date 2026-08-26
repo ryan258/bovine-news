@@ -1,0 +1,87 @@
+# THE MOO METER — the newsroom's daily audience sentiment instrument.
+# One question per day, selected by calendar. Methodology: vibes.
+# "weight" seeds the result distribution; it is not a real number and we
+# will not be taking questions at this time.
+
+methodology: "Methodology: vibes."
+disclaimer_after_vote: "Results are not scientific. Neither are cows, strictly, but here we are."
+
+questions:
+  - id: "salad-bar-id"
+    question: "Should the community salad bar start checking ID at the door?"
+    footnote: "Asked following Exhibit F of The Gate Files."
+    options:
+      - label: "Yes, effective immediately"
+        weight: 22
+      - label: "No, the bar must remain free"
+        weight: 51
+      - label: "Only between 11 p.m. and 4 a.m."
+        weight: 24
+      - label: "There's a salad bar?"
+        weight: 3
+  - id: "gate-feelings"
+    question: "How personally do you take whoever opened the gate?"
+    options:
+      - label: "Very personally"
+        weight: 44
+      - label: "Professionally, as a journalist"
+        weight: 18
+      - label: "I opened the gate"
+        weight: 9
+      - label: "I keep rereading the note"
+        weight: 29
+  - id: "intersection-meeting"
+    question: "The intersection meeting that delayed traffic an hour: was it necessary?"
+    options:
+      - label: "Absolutely, and I'd sit through it again"
+        weight: 37
+      - label: "It could have been an email"
+        weight: 41
+      - label: "It could have been a moo"
+        weight: 19
+      - label: "I chaired it and stand by every minute"
+        weight: 3
+  - id: "hay-prices"
+    question: "Hay is at a five-year high. How are you coping?"
+    options:
+      - label: "Chewing slower"
+        weight: 48
+      - label: "Savoring, actually"
+        weight: 26
+      - label: "Writing to the county board"
+        weight: 14
+      - label: "I have never been better"
+        weight: 12
+  - id: "debby-rating"
+    question: "Deborah: appropriately rated or overrated?"
+    options:
+      - label: "Appropriately rated"
+        weight: 58
+      - label: "Overrated, and I'll say it to her face"
+        weight: 11
+      - label: "Underrated, frankly"
+        weight: 23
+      - label: "Who is Deborah"
+        weight: 8
+  - id: "bench-debate"
+    question: "Six hours of council debate for one park bench: time well spent?"
+    options:
+      - label: "The bench was worth it"
+        weight: 33
+      - label: "The bench was never about the bench"
+        weight: 45
+      - label: "Two benches, minimum"
+        weight: 17
+      - label: "I'm still in the chamber"
+        weight: 5
+  - id: "barn-dance-fit"
+    question: "Which act are you most excited to see at the barn dance?"
+    options:
+      - label: "Gary the Banjo Guy"
+        weight: 52
+      - label: "The headliner (TBD)"
+        weight: 16
+      - label: "The snack trough, if we're being honest"
+        weight: 27
+      - label: "Whatever Deborah does"
+        weight: 5

@@ -1,0 +1,25 @@
+# Underwriting partners of the Bovine News Network.
+# These are fictional. Any resemblance to a real business is a coincidence
+# that our legal desk describes as "flattering."
+
+disclaimer: "Paid for by the underwriters below. Bovine News coverage remains independent, which is exactly why we can report on fences."
+
+sponsors:
+  - name: "Kline & Sons Fence Co."
+    line: "Ask about our self-latching series."
+    note: "Family owned since before the first incident."
+  - name: "Dairy Air Heating & Cooling"
+    line: "Precision comfort for barns, coops, and covered porches."
+    note: "Free estimates. Cooler summers, warmer winters, same name."
+  - name: "Chewman's Feed & Silage"
+    line: "\"If they chew it, we grew it.\""
+    note: "Now offering hay at five-year-high prices, proudly."
+  - name: "The Salt Lick"
+    line: "Fine dining. Casual dress code. No reservation honored after dark."
+    note: "Winner, Best Mineral Deposit, three consecutive years."
+  - name: "Moosquito Shield Pasture Defense"
+    line: "Because the pasture deserves better."
+    note: "Satisfaction guaranteed or your itch back."
+  - name: "Bovista Insurance Group"
+    line: "Because accidents happen near open gates."
+    note: "Ask about our Overnight Containment rider."

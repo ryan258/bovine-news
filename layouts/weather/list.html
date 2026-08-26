@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ $w := site.Data.weather }}
+{{ $w := hugo.Data.weather }}
 <div class="page-header page-header--weather">
   <div class="container">
     <span class="eyebrow eyebrow--light">Weather</span>
@@ -52,7 +52,7 @@
   </ul>
 
   <h2 class="section-title">Radar</h2>
-  {{ partial "media-plate.html" (dict "color" "blue" "ratio" "16x9" "label" "Radar Coming Soon" "src" $w.radar_image "alt" $w.radar_image_alt) }}
+  {{ partial "radar.html" . }}
 
   {{ $met := site.GetPage "/team/mooira-nav" }}
   {{ with $met }}

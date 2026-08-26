@@ -1,0 +1,30 @@
+{{- $qs := hugo.Data.moometer.questions -}}
+{{- $idx := mod (now.YearDay) (len $qs) -}}
+{{- $q := index $qs $idx -}}
+<section class="moo" aria-labelledby="moo-heading">
+  <div class="container">
+    <div class="moo__card" data-moo-meter data-question-id="{{ $q.id }}">
+      <div class="moo__intro">
+        <p class="moo__brand"><span class="live-dot live-dot--off" aria-hidden="true"></span> The Moo Meter</p>
+        <h2 id="moo-heading">{{ $q.question }}</h2>
+        {{ with $q.footnote }}<p class="moo__context">{{ . }}</p>{{ end }}
+      </div>
+
+      <div class="moo__panel">
+        <div class="moo__choices" role="group" aria-label="Cast your vote">
+          {{ range $i, $opt := $q.options }}
+          <button type="button" class="moo__option" data-vote-choice data-weight="{{ $opt.weight }}" aria-pressed="false">
+            <span class="moo__label">{{ $opt.label }}</span>
+            <span class="moo__pct" data-moo-pct hidden>0%</span>
+          </button>
+          {{ end }}
+        </div>
+        <div class="moo__foot" data-moo-foot hidden>
+          <p>{{ hugo.Data.moometer.disclaimer_after_vote }}</p>
+          <p class="moo__methodology">{{ hugo.Data.moometer.methodology }}</p>
+        </div>
+        {{ if not $q.footnote }}<p class="moo__methodology moo__methodology--idle">{{ hugo.Data.moometer.methodology }}</p>{{ end }}
+      </div>
+    </div>
+  </div>
+</section>

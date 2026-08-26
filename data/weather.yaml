@@ -63,5 +63,5 @@ alert:
   active: true
   headline: "Severe Thunderstorm Watch — Western Pasture"
   body: "The Bovine Weather Center has issued a severe thunderstorm watch for the western pasture through 9 PM. Residents are advised to bring in loose hay."
-radar_image: "images/modules/weather-radar-coming-soon.jpg"
+radar_image: "images/modules/weather-radar-coming-soon.webp"
 radar_image_alt: "A green, yellow, orange, and red radar-like storm swirl fills the sky above a dark pasture."

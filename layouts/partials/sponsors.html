@@ -1,0 +1,16 @@
+{{- $s := hugo.Data.sponsors -}}
+<section class="underwriters" aria-label="Underwriters">
+  <div class="container">
+    <p class="underwriters__lede">Bovine News is made possible by viewers like you. <span>And by:</span></p>
+    <ul class="underwriters__grid">
+      {{ range $s.sponsors }}
+      <li class="underwriter">
+        <p class="underwriter__name">{{ .name }}</p>
+        <p class="underwriter__line">&ldquo;{{ .line }}&rdquo;</p>
+        <p class="underwriter__note">{{ .note }}</p>
+      </li>
+      {{ end }}
+    </ul>
+    <p class="underwriters__disclaimer">{{ $s.disclaimer }}</p>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+{{- $w := hugo.Data.weather -}}
+<div class="radar">
+  <div class="radar__scope" role="img" aria-label="Doppler pasture radar: light chomping over Creekside, moderate grazing near North Pasture, and a severe rumination cell parked directly over the salad bar.">
+    <span class="radar__sweep" aria-hidden="true"></span>
+
+    <div class="radar__blip radar__blip--creekside" aria-hidden="true"><i></i><span>Creekside</span></div>
+    <div class="radar__blip radar__blip--north" aria-hidden="true"><i></i><span>North Pasture</span></div>
+    <div class="radar__blip radar__blip--downtown" aria-hidden="true"><i></i><span>Downtown Square</span></div>
+    <div class="radar__blip radar__blip--salad radar__blip--severe" aria-hidden="true"><i></i><span>The Salad Bar</span></div>
+
+    <p class="radar__meta"><strong>BN DOPPLER 4000</strong> · {{ $w.updated }} · LIVE</p>
+  </div>
+
+  <div class="radar__side">
+    <h3>Current Radar Notes</h3>
+    <ul class="radar__legend">
+      <li data-level="1">Light chomping</li>
+      <li data-level="2">Moderate grazing</li>
+      <li data-level="3">Severe rumination</li>
+    </ul>
+    <p class="radar__note">A slow-moving cell of enthusiasm remains parked over the salad bar, where it has been "just passing through" since June. Meteorologist Mooira Nav confirms the disturbance is <em>"not weather."</em></p>
+  </div>
+</div>
