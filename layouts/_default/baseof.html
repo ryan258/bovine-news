@@ -10,6 +10,7 @@
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}
+  {{ partial "breaking-overlay.html" . }}
   {{ $js := resources.Get "js/main.js" }}
   <script src="{{ $js.RelPermalink }}" defer></script>
   {{ if eq .Type "search" }}{{ $searchJs := resources.Get "js/search.js" }}<script src="{{ $searchJs.RelPermalink }}" defer></script>{{ end }}

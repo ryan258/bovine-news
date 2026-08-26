@@ -7,12 +7,26 @@
   <a class="skip-link" href="#main">Skip to main content</a>
   {{ partial "header.html" . }}
   <main id="main">
-    <div class="page-header">
-      <div class="container not-found">
-        {{ partial "portrait.html" (dict "color" "navy" "class" "not-found__portrait") }}
+    <div class="page-header not-found">
+      <div class="container">
+        <p class="not-found__flag"><span class="live-dot" aria-hidden="true"></span> Breaking</p>
         <h1>404: Story Not Found</h1>
-        <p>This page has wandered off, much like the herd near Main Street last Tuesday.</p>
-        <a class="btn btn--primary" href="{{ "" | relURL }}">Back to the Newsroom</a>
+        <p class="not-found__deck">Our reporters chased it. The story got away. Witnesses describe it as &ldquo;a cow,&rdquo; which narrows it down considerably.</p>
+
+        {{ partial "portrait.html" (dict "color" "navy" "class" "not-found__portrait") }}
+
+        <div class="not-found__actions">
+          <a class="btn btn--primary" href="{{ "" | relURL }}">Back to the Newsroom</a>
+          <a class="btn btn--ghost" href="{{ "search/" | relURL }}">Search the Archive</a>
+          <a class="btn btn--ghost" href="{{ "special-reports/the-gate-files/" | relURL }}">Read The Gate Files Instead</a>
+        </div>
+
+        <ul class="not-found__ticker" aria-label="Other stories still on file">
+          <li><span>Still true:</span> <a href="{{ "news/mysterious-gate-opens-overnight/" | relURL }}">the gate is open</a></li>
+          <li><span>Still counting:</span> <a href="{{ "special-reports/the-gate-files/" | relURL }}">37 ranch packets</a></li>
+          <li><span>Still meeting:</span> <a href="{{ "news/traffic-delayed-cows-intersection/" | relURL }}">the intersection herd</a></li>
+          <li><span>Still silent:</span> <a href="{{ "opinion/the-bench-was-never-about-the-bench/" | relURL }}">Deborah</a></li>
+        </ul>
       </div>
     </div>
   </main>

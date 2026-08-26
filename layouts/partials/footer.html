@@ -25,6 +25,7 @@
         <li><a href="{{ "news/" | relURL }}">News</a></li>
         <li><a href="{{ "weather/" | relURL }}">Weather</a></li>
         <li><a href="{{ "sports/" | relURL }}">Sports</a></li>
+        <li><a href="{{ "opinion/" | relURL }}">Opinion</a></li>
         {{ if $videoEnabled }}
         <li><a href="{{ "video/" | relURL }}">Video</a></li>
         {{ end }}
@@ -41,6 +42,7 @@
         <li><a href="{{ "terms/" | relURL }}">Terms</a></li>
         <li><a href="{{ "accessibility/" | relURL }}">Accessibility</a></li>
         <li><a href="{{ "satire-disclaimer/" | relURL }}">Satire Disclaimer</a></li>
+        <li><a href="{{ "corrections/" | relURL }}">Corrections</a></li>
       </ul>
     </nav>
 
@@ -60,6 +62,6 @@
   </div>
 
   <div class="container site-footer__bottom">
-    <p>&copy; {{ now.Format "2006" }} Bovine News Network. All rights reserved. A work of satire — see our <a href="{{ "satire-disclaimer/" | relURL }}">disclaimer</a>.</p>
+    <p>&copy; {{ now.Format "2006" }} Bovine News Network. All rights reserved. A work of satire — see our <a href="{{ "satire-disclaimer/" | relURL }}">disclaimer</a>. For urgent news: &uarr; &uarr; &darr; &darr; &larr; &rarr; &larr; &rarr; B A.</p>
   </div>
 </footer>

@@ -1,4 +1,4 @@
-{{ $weather := site.Data.weather }}
+{{ $weather := hugo.Data.weather }}
 {{ $sec := .Section }}
 {{ $videoEnabled := site.Params.features.video }}
 {{ $onAir := (site.GetPage "/live/").Params.on_air }}
@@ -52,6 +52,7 @@
         <li><a href="{{ "local/" | relURL }}" {{ if eq $sec "local" }}aria-current="page"{{ end }}>Local</a></li>
         <li><a href="{{ "weather/" | relURL }}" {{ if eq $sec "weather" }}aria-current="page"{{ end }}>Weather</a></li>
         <li><a href="{{ "sports/" | relURL }}" {{ if eq $sec "sports" }}aria-current="page"{{ end }}>Sports</a></li>
+        <li><a href="{{ "special-reports/" | relURL }}" {{ if eq $sec "special-reports" }}aria-current="page"{{ end }}>Special Reports</a></li>
         {{ if $videoEnabled }}
         <li><a href="{{ "video/" | relURL }}" {{ if eq $sec "video" }}aria-current="page"{{ end }}>Video</a></li>
         {{ end }}
@@ -69,6 +70,7 @@
         <li><a href="{{ "local/" | relURL }}">Local</a></li>
         <li><a href="{{ "weather/" | relURL }}">Weather</a></li>
         <li><a href="{{ "sports/" | relURL }}">Sports</a></li>
+        <li><a href="{{ "special-reports/" | relURL }}">Special Reports</a></li>
         {{ if $videoEnabled }}
         <li><a href="{{ "video/" | relURL }}">Video</a></li>
         {{ end }}

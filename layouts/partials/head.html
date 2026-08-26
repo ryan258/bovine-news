@@ -1,30 +1,110 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{{ $isArticle := and (eq .Kind "page") (in (slice "news" "opinion" "special-reports") .Type) }}
 <title>{{ if .IsHome }}{{ site.Title }} — {{ site.Params.brandLine }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
 <meta name="description" content="{{ .Params.seo_description | default .Summary | default site.Params.brandLine }}">
 <link rel="canonical" href="{{ .Permalink }}">
-<meta property="og:type" content="{{ if eq .Type "news" }}article{{ else }}website{{ end }}">
-<meta property="og:title" content="{{ .Title }}">
+<meta name="theme-color" content="#03101f">
+
+{{/* Social card image: the story's own image, falling back to the latest lead story image. */}}
+{{ $ogImage := .Params.image }}
+{{ if not $ogImage }}
+  {{ with index ((where site.RegularPages "Type" "news").ByParam "published_date").Reverse 0 }}{{ $ogImage = .Params.image }}{{ end }}
+{{ end }}
+
+<meta property="og:type" content="{{ if $isArticle }}article{{ else }}website{{ end }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="{{ .Params.seo_title | default .Title }}">
 <meta property="og:description" content="{{ .Params.seo_description | default .Summary | default site.Params.brandLine }}">
 <meta property="og:url" content="{{ .Permalink }}">
+{{ with $ogImage }}
+<meta property="og:image" content="{{ . | absURL }}">
+<meta name="twitter:image" content="{{ . | absURL }}">
+{{ end }}
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ .Params.seo_title | default .Title }}">
+<meta name="twitter:description" content="{{ .Params.seo_description | default .Summary | default site.Params.brandLine }}">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%2308243d%22/><text x=%2250%22 y=%2268%22 font-size=%2260%22 text-anchor=%22middle%22 fill=%22%23e31f2b%22 font-family=%22sans-serif%22>B</text></svg>">
 {{ $css := resources.Get "css/main.css" }}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ "index.xml" | relURL }}">
-{{ if eq .Type "news" }}
+<noscript><style>[data-reveal]{opacity:1;transform:none}</style></noscript>
+<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ "index.xml" | absURL }}">
+
+{{/* Structured data: assembled as a map and marshalled once. jsonify output
+   needs safeJS or the template engine re-encodes the already-quoted JSON.
+   The replace guards against a literal </script> inside any string value. */}}
+{{ $ld := false }}
+{{ if $isArticle }}
+  {{ $author := dict "@type" "Person" "name" "Bovine News Staff" }}
+  {{ with .Params.author }}
+    {{ with site.GetPage (printf "/team/%s" .) }}
+      {{ $author = dict "@type" "Person" "name" .Params.name "url" .Permalink }}
+    {{ else }}
+      {{ $author = dict "@type" "Person" "name" . }}
+    {{ end }}
+  {{ end }}
+
+  {{ $section := .Params.category }}
+  {{ if not $section }}{{ with .CurrentSection }}{{ $section = .Title }}{{ end }}{{ end }}
+
+  {{ $images := slice }}
+  {{ with $ogImage }}{{ $images = slice (. | absURL) }}{{ end }}
+
+  {{/* Commentary is not reported news, and schema.org draws the same line. */}}
+  {{ $article := dict
+    "@type" (cond (eq .Type "opinion") "OpinionNewsArticle" "NewsArticle")
+    "headline" .Title
+    "image" $images
+    "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+    "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+    "articleSection" $section
+    "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+    "author" $author
+    "publisher" (dict "@type" "Organization" "name" site.Title "url" site.BaseURL "slogan" site.Params.brandLine)
+  }}
+  {{ with .Params.summary }}{{ $article = merge $article (dict "description" .) }}{{ end }}
+  {{ with .Params.tags }}{{ $article = merge $article (dict "keywords" .) }}{{ end }}
+
+  {{ $crumbs := slice (dict "@type" "ListItem" "position" 1 "name" "Home" "item" ("" | absURL)) }}
+  {{ with .CurrentSection }}
+    {{ $crumbs = $crumbs | append (dict "@type" "ListItem" "position" (add (len $crumbs) 1) "name" .Title "item" .Permalink) }}
+  {{ end }}
+  {{/* Opinion columns are filed under a category of the same name as their
+     section, so only add the category crumb when it is a distinct step. */}}
+  {{ $sectionTitle := "" }}{{ with .CurrentSection }}{{ $sectionTitle = .Title }}{{ end }}
+  {{ with .Params.category }}
+    {{ if ne . $sectionTitle }}
+      {{ $crumbs = $crumbs | append (dict "@type" "ListItem" "position" (add (len $crumbs) 1) "name" . "item" ((printf "categories/%s/" (. | urlize)) | absURL)) }}
+    {{ end }}
+  {{ end }}
+  {{ $crumbs = $crumbs | append (dict "@type" "ListItem" "position" (add (len $crumbs) 1) "name" .Title) }}
+
+  {{ $ld = dict "@context" "https://schema.org" "@graph" (slice $article (dict "@type" "BreadcrumbList" "itemListElement" $crumbs)) }}
+{{ else if .IsHome }}
+  {{ $ld = dict "@context" "https://schema.org" "@graph" (slice
+    (dict "@type" "Organization" "name" site.Title "url" site.BaseURL "slogan" site.Params.brandLine)
+    (dict "@type" "WebSite" "name" site.Title "url" site.BaseURL "potentialAction" (dict
+      "@type" "SearchAction"
+      "target" (dict "@type" "EntryPoint" "urlTemplate" (printf "%ssearch/?q={search_term_string}" site.BaseURL))
+      "query-input" "required name=search_term_string"))
+  ) }}
+{{ else if and (eq .Kind "page") (eq .Type "team") }}
+  {{ $person := dict
+    "@type" "Person"
+    "name" .Params.name
+    "jobTitle" .Params.jobtitle
+    "url" .Permalink
+    "worksFor" (dict "@type" "Organization" "name" site.Title "url" site.BaseURL)
+  }}
+  {{ with .Params.email }}{{ $person = merge $person (dict "email" (printf "mailto:%s" .)) }}{{ end }}
+  {{ $ld = merge (dict "@context" "https://schema.org") $person }}
+{{ end }}
+{{ with $ld }}
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "NewsArticle",
-  "headline": {{ .Title | jsonify }},
-  "datePublished": {{ .Params.published_date | jsonify }},
-  "dateModified": {{ (.Params.updated_date | default .Params.published_date) | jsonify }},
-  "author": { "@type": "Person", "name": {{ (.Params.author | default "Bovine News Staff") | jsonify }} },
-  "publisher": { "@type": "Organization", "name": "Bovine News Network" }
-}
+{{ replace (. | jsonify (dict "indent" "  ")) "</" "<\\/" | safeJS }}
 </script>
 {{ end }}

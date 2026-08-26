@@ -30,6 +30,8 @@
 </div>
 
 {{ partial "breaking-ticker.html" . }}
+{{ partial "gate-promo.html" . }}
+{{ partial "moo-meter.html" . }}
 {{ partial "trending-bar.html" . }}
 
 <div class="container newsroom-row{{ if not $videoEnabled }} newsroom-row--text-only{{ end }}">
@@ -71,5 +73,6 @@
 </div>
 
 {{ partial "sports-widget.html" . }}
+{{ partial "sponsors.html" . }}
 {{ partial "newsletter.html" . }}
 {{ end }}

@@ -32,17 +32,19 @@
         </a>
         {{ end }}
         <span class="article-header__datetime">
-          {{ with .Params.published_date }}<time datetime="{{ . }}">{{ . | time.Format "January 2, 2006 · 3:04 PM" }}</time>{{ end }}
+          {{ with .Params.published_date }}<time datetime="{{ . | time.Format "2006-01-02T15:04:05Z07:00" }}">{{ . | time.Format "January 2, 2006 · 3:04 PM" }}</time>{{ end }}
           <span>{{ .ReadingTime }} min read</span>
         </span>
         {{ with .Params.updated_date }}<span class="article-header__updated">Updated {{ . | time.Format "January 2, 3:04 PM" }}</span>{{ end }}
       </div>
       <div class="share-row">
         <span>Share:</span>
-        <a href="#" aria-label="Share on X">{{ partial "icon.html" (dict "name" "x" "class" "icon--sm") }}</a>
-        <a href="#" aria-label="Share on Facebook">{{ partial "icon.html" (dict "name" "facebook" "class" "icon--sm") }}</a>
-        <a href="#" aria-label="Share via email">{{ partial "icon.html" (dict "name" "mail" "class" "icon--sm") }}</a>
+        {{ $shareText := printf "%s — %s" .Title site.Title }}
+        <a href="{{ printf "https://twitter.com/intent/tweet?text=%s&url=%s" ($shareText | urlquery) (.Permalink | urlquery) }}" target="_blank" rel="noopener" aria-label="Share on X (opens in a new tab)">{{ partial "icon.html" (dict "name" "x" "class" "icon--sm") }}</a>
+        <a href="{{ printf "https://www.facebook.com/sharer/sharer.php?u=%s" (.Permalink | urlquery) }}" target="_blank" rel="noopener" aria-label="Share on Facebook (opens in a new tab)">{{ partial "icon.html" (dict "name" "facebook" "class" "icon--sm") }}</a>
+        <a href="{{ printf "mailto:?subject=%s&body=%s" (replace ($shareText | urlquery) "+" "%20") (.Permalink | urlquery) }}" aria-label="Share via email">{{ partial "icon.html" (dict "name" "mail" "class" "icon--sm") }}</a>
         <button type="button" class="icon-btn" data-copy-link aria-label="Copy link">{{ partial "icon.html" (dict "name" "share" "class" "icon--sm") }}</button>
+        <span class="share-row__copied" data-copy-feedback hidden role="status">Link copied</span>
       </div>
     </div>
   </header>
@@ -90,7 +92,7 @@
       </div>
       {{ end }}
 
-      {{ with site.Data.trending }}
+      {{ with hugo.Data.trending }}
       <div class="sidebar-card">
         <h2>Trending Now</h2>
         <ol class="trending-list">

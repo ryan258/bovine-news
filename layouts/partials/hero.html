@@ -29,6 +29,12 @@
   </div>
   {{ end }}
   {{ if gt (len $featured) 1 }}
+  <button type="button" class="icon-btn hero-card__arrow hero-card__arrow--prev" data-hero-prev aria-label="Previous story">
+    {{ partial "icon.html" (dict "name" "chevron-left" "class" "icon--sm") }}
+  </button>
+  <button type="button" class="icon-btn hero-card__arrow hero-card__arrow--next" data-hero-next aria-label="Next story">
+    {{ partial "icon.html" (dict "name" "chevron-right" "class" "icon--sm") }}
+  </button>
   <div class="hero-card__dots" data-hero-dots>
     {{ range $i, $p := $featured }}
     <button type="button" class="hero-card__dot {{ if eq $i 0 }}is-active{{ end }}" data-hero-dot="{{ $i }}" aria-label="Show story {{ add $i 1 }}" aria-current="{{ if eq $i 0 }}true{{ else }}false{{ end }}"></button>

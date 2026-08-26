@@ -1,15 +1,15 @@
-{{- $pages := ((where site.RegularPages "Type" "news").ByParam "published_date").Reverse -}}
 {{- $list := slice -}}
-{{- range $pages -}}
+{{- $indexed := where site.RegularPages "Type" "in" (slice "news" "opinion" "special-reports") -}}
+{{- range ($indexed.ByParam "published_date").Reverse -}}
   {{- $reporter := "" -}}
   {{- with .Params.author -}}
-    {{- $rp := site.GetPage (printf "/team/%s" .) -}}
-    {{- with $rp }}{{ $reporter = .Params.name }}{{ end -}}
+    {{- with site.GetPage (printf "/team/%s" .) }}{{ $reporter = .Params.name }}{{ end -}}
   {{- end -}}
   {{- $dateStr := "" -}}
   {{- with .Params.published_date }}{{ $dateStr = . | time.Format "Jan 2, 2006" }}{{ end -}}
-  {{- $item := dict "title" .Title "url" .RelPermalink "category" .Params.category "summary" (.Params.summary | default .Summary) "reporter" $reporter "tags" .Params.tags "date" $dateStr -}}
+  {{- $category := .Params.category -}}
+  {{- if not $category }}{{ with .CurrentSection }}{{ $category = .Title }}{{ end }}{{ end -}}
+  {{- $item := dict "title" .Title "url" .RelPermalink "category" $category "summary" (.Params.summary | default .Summary) "reporter" $reporter "tags" .Params.tags "date" $dateStr -}}
   {{- $list = $list | append $item -}}
 {{- end -}}
 {{- $list | jsonify (dict "indent" "  ") -}}
-
