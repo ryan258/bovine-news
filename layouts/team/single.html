@@ -7,7 +7,7 @@
       <p class="profile__title">{{ .Params.jobtitle }} &middot; {{ .Params.beat }}</p>
       <p class="profile__phrase">&ldquo;{{ .Params.phrase }}&rdquo;</p>
       <div class="social-row">
-        {{ range .Params.social_links }}<a href="{{ .url }}" aria-label="{{ $.Params.name }} on {{ .platform }}">{{ partial "icon.html" (dict "name" (lower .platform)) }}</a>{{ end }}
+        {{ range .Params.social_links }}{{ if and .url (ne .url "#") }}<a href="{{ .url }}" aria-label="{{ $.Params.name }} on {{ .platform }}">{{ partial "icon.html" (dict "name" (lower .platform)) }}</a>{{ else }}<span class="social-preview" role="img" aria-label="{{ $.Params.name }} on {{ .platform }} (display only)" title="Display only; no linked account">{{ partial "icon.html" (dict "name" (lower .platform)) }}</span>{{ end }}{{ end }}
       </div>
       <a class="profile__email" href="mailto:{{ .Params.email }}">{{ partial "icon.html" (dict "name" "mail" "class" "icon--sm") }} {{ .Params.email }}</a>
     </div>

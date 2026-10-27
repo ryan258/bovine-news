@@ -6,7 +6,7 @@
     <p class="reporter-card__title">{{ $p.Params.jobtitle | upper }}</p>
     <p class="reporter-card__tagline">{{ $p.Params.short_bio }}</p>
     <div class="social-row social-row--sm">
-      {{ range $p.Params.social_links }}<a href="{{ .url }}" aria-label="{{ $p.Params.name }} on {{ .platform }}">{{ partial "icon.html" (dict "name" (lower .platform) "class" "icon--sm") }}</a>{{ end }}
+      {{ range $p.Params.social_links }}{{ if and .url (ne .url "#") }}<a href="{{ .url }}" aria-label="{{ $p.Params.name }} on {{ .platform }}">{{ partial "icon.html" (dict "name" (lower .platform) "class" "icon--sm") }}</a>{{ else }}<span class="social-preview" role="img" aria-label="{{ $p.Params.name }} on {{ .platform }} (display only)" title="Display only; no linked account">{{ partial "icon.html" (dict "name" (lower .platform) "class" "icon--sm") }}</span>{{ end }}{{ end }}
     </div>
   </div>
 </article>

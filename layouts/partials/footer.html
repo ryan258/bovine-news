@@ -8,12 +8,12 @@
       </span>
       <p>Bovine News Network — {{ site.Params.brandLine }}</p>
       <div class="social-row">
-        <a href="#" aria-label="X">{{ partial "icon.html" (dict "name" "x") }}</a>
-        <a href="#" aria-label="Facebook">{{ partial "icon.html" (dict "name" "facebook") }}</a>
-        <a href="#" aria-label="Instagram">{{ partial "icon.html" (dict "name" "instagram") }}</a>
+        <span class="social-preview" role="img" aria-label="X (display only)" title="Display only; no linked account">{{ partial "icon.html" (dict "name" "x") }}</span>
+        <span class="social-preview" role="img" aria-label="Facebook (display only)" title="Display only; no linked account">{{ partial "icon.html" (dict "name" "facebook") }}</span>
+        <span class="social-preview" role="img" aria-label="Instagram (display only)" title="Display only; no linked account">{{ partial "icon.html" (dict "name" "instagram") }}</span>
         {{ if $videoEnabled }}
-        <a href="#" aria-label="YouTube">{{ partial "icon.html" (dict "name" "youtube") }}</a>
-        <a href="#" aria-label="TikTok">{{ partial "icon.html" (dict "name" "tiktok") }}</a>
+        <span class="social-preview" role="img" aria-label="YouTube (display only)" title="Display only; no linked account">{{ partial "icon.html" (dict "name" "youtube") }}</span>
+        <span class="social-preview" role="img" aria-label="TikTok (display only)" title="Display only; no linked account">{{ partial "icon.html" (dict "name" "tiktok") }}</span>
         {{ end }}
       </div>
     </div>
@@ -47,16 +47,17 @@
     </nav>
 
     <div class="site-footer__apps">
-      <h2>Download Our App</h2>
+      <h2>App preview</h2>
+      <p>Store badges are decorative; no app download is available.</p>
       <div class="app-badges">
-        <a class="app-badge" href="#">
+        <span class="app-badge">
           {{ partial "icon.html" (dict "name" "play" "class" "icon--sm") }}
           <span><small>Download on the</small>App Store</span>
-        </a>
-        <a class="app-badge" href="#">
+        </span>
+        <span class="app-badge">
           {{ partial "icon.html" (dict "name" "play" "class" "icon--sm") }}
           <span><small>Get it on</small>Google Play</span>
-        </a>
+        </span>
       </div>
     </div>
   </div>

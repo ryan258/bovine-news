@@ -35,9 +35,9 @@
     <p>{{ partial "icon.html" (dict "name" "mail" "class" "icon--sm") }} tips@bovinenews.tv</p>
     <p>{{ partial "icon.html" (dict "name" "marker" "class" "icon--sm") }} {{ site.Params.city }}</p>
     <div class="social-row">
-      <a href="#" aria-label="X">{{ partial "icon.html" (dict "name" "x") }}</a>
-      <a href="#" aria-label="Facebook">{{ partial "icon.html" (dict "name" "facebook") }}</a>
-      <a href="#" aria-label="Instagram">{{ partial "icon.html" (dict "name" "instagram") }}</a>
+      <span class="social-preview" role="img" aria-label="X (display only)" title="Display only; no linked account">{{ partial "icon.html" (dict "name" "x") }}</span>
+      <span class="social-preview" role="img" aria-label="Facebook (display only)" title="Display only; no linked account">{{ partial "icon.html" (dict "name" "facebook") }}</span>
+      <span class="social-preview" role="img" aria-label="Instagram (display only)" title="Display only; no linked account">{{ partial "icon.html" (dict "name" "instagram") }}</span>
     </div>
   </aside>
 </div>

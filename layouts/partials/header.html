@@ -22,9 +22,9 @@
       {{ if $videoEnabled }}
       <a class="btn btn--live btn--sm" href="{{ "live/" | relURL }}">{{ partial "icon.html" (dict "name" "play" "class" "icon--xs") }} Watch Live</a>
       {{ end }}
-      <a href="#" aria-label="Bovine News on X">{{ partial "icon.html" (dict "name" "x" "class" "icon--sm") }}</a>
-      <a href="#" aria-label="Bovine News on Facebook">{{ partial "icon.html" (dict "name" "facebook" "class" "icon--sm") }}</a>
-      <a href="#" aria-label="Bovine News on Instagram">{{ partial "icon.html" (dict "name" "instagram" "class" "icon--sm") }}</a>
+      <span class="social-preview" role="img" aria-label="Bovine News on X (display only)" title="Display only; no linked account">{{ partial "icon.html" (dict "name" "x" "class" "icon--sm") }}</span>
+      <span class="social-preview" role="img" aria-label="Bovine News on Facebook (display only)" title="Display only; no linked account">{{ partial "icon.html" (dict "name" "facebook" "class" "icon--sm") }}</span>
+      <span class="social-preview" role="img" aria-label="Bovine News on Instagram (display only)" title="Display only; no linked account">{{ partial "icon.html" (dict "name" "instagram" "class" "icon--sm") }}</span>
       <a class="icon-btn icon-btn--sm" href="{{ "search/" | relURL }}" aria-label="Search">{{ partial "icon.html" (dict "name" "search" "class" "icon--sm") }}</a>
     </div>
   </div>
