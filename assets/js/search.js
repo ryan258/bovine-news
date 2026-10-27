@@ -28,6 +28,23 @@
         '<p class="story-card__summary">' + item.summary + "</p>" +
         '<div class="story-card__meta">' + (item.reporter ? "<span>" + item.reporter + "</span><span class=\"dot\">&middot;</span>" : "") + "<time>" + item.date + "</time></div>" +
         "</div>";
+      var plate = el.querySelector(".media-plate");
+      if (item.image) {
+        var image = document.createElement("img");
+        image.className = "media-plate__image";
+        image.src = item.image;
+        image.alt = item.image_alt || "";
+        image.width = 1920;
+        image.height = 1080;
+        image.loading = "lazy";
+        image.decoding = "async";
+        plate.appendChild(image);
+      } else {
+        var label = document.createElement("span");
+        label.className = "media-plate__label";
+        label.textContent = "No image supplied";
+        plate.appendChild(label);
+      }
       results.appendChild(el);
     });
   }

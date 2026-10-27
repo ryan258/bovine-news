@@ -9,7 +9,9 @@
   {{- with .Params.published_date }}{{ $dateStr = . | time.Format "Jan 2, 2006" }}{{ end -}}
   {{- $category := .Params.category -}}
   {{- if not $category }}{{ with .CurrentSection }}{{ $category = .Title }}{{ end }}{{ end -}}
-  {{- $item := dict "title" .Title "url" .RelPermalink "category" $category "summary" (.Params.summary | default .Summary) "reporter" $reporter "tags" .Params.tags "date" $dateStr -}}
+  {{- $image := "" -}}
+  {{- with .Params.image }}{{ $image = . | relURL }}{{ end -}}
+  {{- $item := dict "image" $image "image_alt" (.Params.image_alt | default "") "title" .Title "url" .RelPermalink "category" $category "summary" (.Params.summary | default .Summary) "reporter" $reporter "tags" .Params.tags "date" $dateStr -}}
   {{- $list = $list | append $item -}}
 {{- end -}}
 {{- $list | jsonify (dict "indent" "  ") -}}
