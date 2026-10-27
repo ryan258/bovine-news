@@ -1,65 +1,27 @@
 {{ define "main" }}
 {{ $w := hugo.Data.weather }}
-<div class="page-header page-header--weather">
-  <div class="container">
-    <span class="eyebrow eyebrow--light">Weather</span>
-    <h1>{{ $w.location }}</h1>
-    <p>Last updated {{ $w.updated }}</p>
-  </div>
-</div>
-
-<div class="container">
-  {{ if $w.alert.active }}
-  <div class="alert-banner">
-    {{ partial "icon.html" (dict "name" "storm" "class" "alert-banner__icon") }}
-    <div>
-      <p class="alert-banner__title">{{ $w.alert.headline }}</p>
-      <p>{{ $w.alert.body }}</p>
+{{ $meteorologist := site.GetPage "/team/mooira-nav" }}
+{{ $stormStory := site.GetPage "/news/severe-thunderstorm-western-pasture" }}
+{{ $farmStory := site.GetPage "/news/dairy-prices-five-year-high" }}
+{{ $trafficStory := site.GetPage "/news/traffic-delayed-cows-intersection" }}
+<main class="weather-page">
+  <div class="container weather-page__grid">
+    <div class="weather-page__main">
+      <section class="weather-now" aria-labelledby="weather-now-title">
+        <div class="weather-now__copy"><p class="weather-now__kicker">Current conditions</p><h1 id="weather-now-title">{{ $w.location }}</h1><p class="weather-now__lede">Local weather. No bull.</p><p>Static demo data and images. This page is not a live forecast.</p><div class="weather-now__reading">{{ partial "icon.html" (dict "name" $w.icon "class" "weather-now__icon") }}<div><p class="weather-now__temp">{{ $w.temp }}&deg;</p><p class="weather-now__conditions">{{ $w.conditions }}</p></div></div><ul class="weather-now__stats" aria-label="Weather details"><li>Feels like {{ $w.feels_like }}&deg;</li><li>Humidity {{ $w.humidity }}</li><li>Wind S {{ $w.wind }}</li></ul></div>
+        <img class="weather-now__image" src="{{ "images/team/bessie-barnes.webp" | relURL }}" alt="A Bovine News cow correspondent looking into the camera." width="1920" height="1080" fetchpriority="high">
+      </section>
+      <section class="weather-panel weather-radar-panel" aria-labelledby="radar-title"><div class="weather-panel__heading"><h2 id="radar-title">Radar preview</h2><a href="{{ $w.radar_image | relURL }}">View full preview <span aria-hidden="true">→</span></a></div><img class="weather-radar-panel__image" src="{{ $w.radar_image | relURL }}" alt="{{ $w.radar_image_alt }}" width="1920" height="1080"><div class="weather-radar-panel__scale" aria-label="Radar scale from light to heavy precipitation"><span>Light</span><i aria-hidden="true"></i><span>Heavy</span></div></section>
+      <section class="weather-panel weather-forecast" aria-labelledby="forecast-title"><div class="weather-panel__heading"><h2 id="forecast-title">7 day forecast</h2><span>Illustrative 7-day view only</span></div><ul class="weather-forecast__days">{{ range $w.forecast }}<li><p class="weather-forecast__day">{{ .day }}</p><span class="weather-forecast__date">Forecast</span>{{ partial "icon.html" (dict "name" .icon "class" "weather-forecast__icon") }}<strong>{{ .high }}&deg;</strong><span>{{ .low }}&deg;</span><small>{{ .conditions }}</small><em>💧 {{ if eq .day "Sun" }}40{{ else if eq .day "Mon" }}30{{ else }}10{{ end }}%</em></li>{{ end }}</ul></section>
+      <section class="weather-stories" aria-labelledby="stories-title"><div class="weather-section-heading"><h2 id="stories-title">Weather stories</h2><a href="{{ "news/" | relURL }}">View all <span aria-hidden="true">→</span></a></div><div class="weather-stories__grid">{{ range (slice $stormStory $farmStory $trafficStory) }}{{ with . }}<article class="weather-story"><a class="weather-story__image" href="{{ .RelPermalink }}"><img src="{{ .Params.image | relURL }}" alt="{{ .Params.image_alt }}" width="1920" height="1080"><span>{{ index .Params.categories 0 }}</span></a><div class="weather-story__body"><h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3><p>{{ .Params.summary }}</p><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 3:04 PM" }}</time></div></article>{{ end }}{{ end }}</div></section>
     </div>
+    <aside class="weather-page__aside" aria-label="Weather tools and updates">
+      <section class="weather-panel weather-alerts"><div class="weather-panel__heading"><h2>Weather alerts</h2><span>Demo status</span></div><div class="weather-alerts__empty"><span aria-hidden="true">✓</span><div><strong>No active alerts</strong><p>Conditions are quiet for now.</p></div></div></section>
+      {{ with $meteorologist }}<section class="weather-quote"><img src="{{ .Params.image | relURL }}" alt="{{ .Params.image_alt }}" width="1920" height="1080"><div><h2>Cow's forecast</h2><blockquote>“Looks like a great day to get outside. High chance of good moos!”</blockquote><p>— {{ .Title }}<small>Chief Meteorologist</small></p></div></section>{{ end }}
+      <section class="weather-panel weather-cams"><div class="weather-panel__heading"><h2>Camera previews</h2><span>Still images</span></div><ul><li><img src="{{ "images/news/creekside-park-expansion-announced.webp" | relURL }}" alt="Bentonville Square camera preview."><span><strong>Bentonville Square</strong><em>Preview</em></span></li><li><img src="{{ "images/news/city-council-approves-park-plan.webp" | relURL }}" alt="Crystal Bridges camera preview."><span><strong>Crystal Bridges</strong><em>Preview</em></span></li><li><img src="{{ "images/news/traffic-delayed-cows-intersection.webp" | relURL }}" alt="I-49 highway camera preview."><span><strong>I-49 / HWY 72</strong><em>Preview</em></span></li></ul></section>
+      <section class="weather-panel weather-trivia"><h2>Weather trivia preview</h2><p>What is the average annual rainfall in Bentonville, AR?</p><p>These sample options are display-only. No answer has been editorially verified.</p><ol><li><span class="weather-trivia__option">A <span>32 inches</span></span></li><li><span class="weather-trivia__option">B <span>42 inches</span></span></li><li><span class="weather-trivia__option">C <span>52 inches</span></span></li><li><span class="weather-trivia__option">D <span>62 inches</span></span></li></ol></section>
+    </aside>
   </div>
-  {{ end }}
-
-  <div class="weather-hero">
-    {{ partial "icon.html" (dict "name" $w.icon "class" "weather-hero__icon") }}
-    <div>
-      <p class="weather-hero__temp">{{ $w.temp }}&deg;</p>
-      <p class="weather-hero__conditions">{{ $w.conditions }}</p>
-    </div>
-  </div>
-
-  <h2 class="section-title">Hourly Forecast</h2>
-  <ul class="hourly-row">
-    {{ range $w.hourly }}
-    <li>
-      <span>{{ .time }}</span>
-      {{ partial "icon.html" (dict "name" .icon "class" "icon--sm") }}
-      <span class="hourly-row__temp">{{ .temp }}&deg;</span>
-    </li>
-    {{ end }}
-  </ul>
-
-  <h2 class="section-title">7-Day Forecast</h2>
-  <ul class="forecast-list">
-    {{ range $w.forecast }}
-    <li>
-      <span class="forecast-list__day">{{ .day }}</span>
-      {{ partial "icon.html" (dict "name" .icon "class" "icon--sm") }}
-      <span class="forecast-list__cond">{{ .conditions }}</span>
-      <span class="forecast-list__hi">{{ .high }}&deg;</span>
-      <span class="forecast-list__lo">{{ .low }}&deg;</span>
-    </li>
-    {{ end }}
-  </ul>
-
-  <h2 class="section-title">Radar</h2>
-  {{ partial "radar.html" . }}
-
-  {{ $met := site.GetPage "/team/mooira-nav" }}
-  {{ with $met }}
-  <h2 class="section-title">Your Meteorologist</h2>
-  <div class="sidebar-card sidebar-card--wide">
-    {{ partial "reporter-card.html" . }}
-  </div>
-  {{ end }}
-</div>
+</main>
+{{ partial "newsletter.html" . }}
 {{ end }}
